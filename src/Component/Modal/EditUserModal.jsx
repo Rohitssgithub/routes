@@ -7,6 +7,7 @@ import { addUser } from '../../Redux/Slice/UserSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../Redux/Slice/UserSlice';
 import FormikControl from '../formikControl/FormikControl';
+import styles from '../../Component/Modal/Modal.module.scss'
 
 
 const EditUserModal = (props) => {
@@ -34,11 +35,13 @@ const EditUserModal = (props) => {
         name: '',
         email: '',
         phone: '',
+        gender: ''
     }
     const modi = {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
+        gender: formData.gender
     }
     console.log(props?.seletedData)
 
@@ -46,6 +49,13 @@ const EditUserModal = (props) => {
         props?.setModalOpen(false)
     }
     const isUpdating = Object.keys(formData).length > 0;
+
+
+    const checkboxOptions = [
+        { key: 'male', value: 'male' },
+        { key: 'female', value: 'female' }
+
+    ]
 
     return (
         <>
@@ -144,7 +154,13 @@ const EditUserModal = (props) => {
                                         placeholder='Enter Your Phone'
                                         name='phone'
                                     />
-                                    <div className="mb-3 text-center">
+                                    <FormikControl
+                                        control='radio'
+                                        label='Please select gender'
+                                        name='gender'
+                                        options={checkboxOptions}
+                                    />
+                                    <div className={styles.btnDiv}>
                                         <Button label={isUpdating ? 'update' : 'Add'} className='btn btn-danger mx-2' type='submit' />
                                         <Button label='close' className='btn btn-primary' onClick={handleCloseFun} />
                                     </div>

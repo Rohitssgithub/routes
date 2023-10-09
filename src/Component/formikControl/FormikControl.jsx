@@ -13,15 +13,15 @@ const FormikControl = (props) => {
     switch (control) {
         case 'input': return <Input {...rest} />
 
-        // case 'textarea': return <TextArea {...rest} />
+        case 'textarea': return <TextArea {...rest} />
 
-        // case 'select': return <Select {...rest} />
+        case 'select': return <Select {...rest} />
 
-        // case 'radio':return <RadioButtons {...rest} />
+        case 'radio':return <RadioButtons {...rest} />
 
-        // case 'checkbox': return <Checkbox {...rest} />
+        case 'checkbox': return <Checkbox {...rest} />
 
-        // case 'date': return <DatePicker {...rest} />
+        case 'date': return <DatePicker {...rest} />
 
         case 'password': return <Password {...rest} />
 

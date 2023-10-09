@@ -15,6 +15,19 @@ export const fetchAllUsers = createAsyncThunk('showUser', async () => {
 
 });
 
+export const fetchSingleUser = createAsyncThunk(
+    "user/single",
+    async (id) => {
+        console.log('thunkAPI', id)
+        try {
+            let data = await axios.put(`${apiUrl}/user/${id}`);
+            console.log("data", data)
+            return data.data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+)
 export const addUser = createAsyncThunk("addUser", async (formData, { rejectWithValue }) => {
     console.log('call')
     const response = await fetch(`${apiUrl}/user`,
@@ -70,6 +83,7 @@ const userReducer = createSlice({
     name: 'users',
     initialState: {
         allusers: [],
+        singleUsers: [],
         loading: false,
         error: null,
     },
@@ -122,6 +136,17 @@ const userReducer = createSlice({
         [deleteUser.rejected]: (state, action) => {
             state.loading = false;
             state.error = action.payload;
+        },
+        [fetchSingleUser.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchSingleUser.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.singleUsers = action.payload
+        },
+        [fetchSingleUser.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload.message;
         },
     }
 })

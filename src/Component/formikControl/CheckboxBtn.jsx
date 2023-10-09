@@ -13,13 +13,6 @@ const CheckboxBtn = (props) => {
                         return options.map((option)=>{
                             return (
                                 <div key={option.key} className='checkbox'>
-                                    {/* <input 
-                                    {...field} 
-                                    type='checkbox' 
-                                    id={option.value} 
-                                    value={option.value}
-                                    checked={field.value.includes(option.value)} 
-                                    /> */}
                                     <Checkbox 
                                     {...field}
                                     id={option.value}

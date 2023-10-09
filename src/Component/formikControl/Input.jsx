@@ -10,7 +10,7 @@ const Input = (props) => {
     const { label, name, type, icon, ...rest } = props;
     console.log('name', name)
     return (
-        <div className='input-control'>
+        <div className={styles.inputControl}>
             <label htmlFor={name}>{icon}</label>
             <Field name={name} {...rest}>
                 {

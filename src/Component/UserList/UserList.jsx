@@ -12,56 +12,72 @@ import BasicModal from '../Modal/Modal';
 import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllUsers } from '../../Redux/Slice/UserSlice';
-
 import EditUserModal from '../Modal/EditUserModal';
 import Loading from '../Loading/Loading';
 import UserDeleteModal from '../Modal/UserDeleteModal';
+import SingleUserModal from '../Modal/SingleUserModal/SingleUserModal';
 const UserList = () => {
     let dispatch = useDispatch()
-
     const { allusers, loading } = useSelector((state) => state.users)
-    console.log(allusers)
-
-
-
     const [modalOpen, setModalOpen] = useState(false)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
-
-
     let [user, setUsers] = useState([])
     const [rowsPerPageValue, setRowsPerPageValue] = useState(10);
     const [count, setCount] = useState(0);
     const [pageSelected, setPageSelected] = useState(1);
     const [seletedData, setSelectedData] = useState({});
     const [deleteId, setDeleteId] = useState(null);
+    const [singleUserModal, setSingleUserModal] = useState(false);
+    const [singleUser, setSingleUser] = useState(false);
 
 
 
+    console.log('singleUser', singleUser)
     const handleUpdate = (data) => {
-        console.log(data)
         setSelectedData(data)
         setModalOpen(true)
     }
     const handleDelete = (data) => {
         setDeleteModalOpen(true)
-        console.log(data)
         setDeleteId(data.id)
     }
+    const handleAddFunction = () => {
+        setSelectedData({})
+        setModalOpen(true)
+    }
+    const handleNameClick = (row) => {
+        setSingleUser(row.id)
+        setSingleUserModal(true)
+    };
 
     const columns = [
         {
             name: 'Name',
+            // selector: row => row.name,
+            selector: (row) => (
+                <span
+                    className="user-name-link"
+                    onClick={() => handleNameClick(row)}
+                    style={{ cursor: 'pointer' }}
+                >
+                    {row.name}
+                </span>
+            ),
+            sortable: true,
+        },
+        {
+            name: 'Email',
             selector: row => row.email,
             sortable: true,
         },
         {
-            name: 'age',
-            selector: row => row.name,
+            name: 'Phone',
+            selector: row => row.phone,
             sortable: true,
         },
         {
-            name: 'email',
-            selector: row => row.phone,
+            name: 'Gender',
+            selector: row => row.gender,
             sortable: true,
         },
         {
@@ -77,16 +93,16 @@ const UserList = () => {
         },
     ];
 
-    const handleAddFunction = () => {
-        setSelectedData({})
-        setModalOpen(true)
-    }
+
 
     useEffect(() => {
         dispatch(fetchAllUsers())
-    }, [seletedData])
+    }, [])
     return (
         <>
+            {
+                singleUserModal && <SingleUserModal singleUser={singleUser} setSingleUser={setSingleUser} setSingleUserModal={setSingleUserModal} singleUserModal={singleUserModal}/>
+            }
             {
                 modalOpen && <EditUserModal modalOpen={modalOpen} setModalOpen={setModalOpen} seletedData={seletedData} />
             }
