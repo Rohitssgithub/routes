@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(216, 216, 224, 0.618);
+}
+
+*:focus {
+    outline: none;
+    box-shadow: none !important;
+}
