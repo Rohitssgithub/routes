@@ -2,6 +2,7 @@ import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import TextError from '../TextError/TextError'
 import { TextField } from '@mui/material'
+import styles from '../../Component/formikControl/Input.module.scss'
 
 const Password = (props) => {
     const { label, name, icon, ...rest } = props
@@ -18,7 +19,7 @@ const Password = (props) => {
                                 id={name}
                                 label={label}
                                 variant="standard"
-                                className='input-field'
+                                className={styles.passwordField}
                                 required
                             />
                         )

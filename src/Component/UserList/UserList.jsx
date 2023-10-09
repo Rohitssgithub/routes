@@ -85,13 +85,14 @@ const UserList = () => {
             cell: (row) => {
                 return (
                     <>
-                        <Button label='Edit' className='btn btn-primary mx-2' onClick={() => handleUpdate(row)} />
-                        <Button label='Delete' className='btn btn-danger' onClick={() => handleDelete(row)} />
+                        <Button label={<i className="fa-solid fa-pen-to-square"></i>} className='btn border mx-2' onClick={() => handleUpdate(row)} />
+                        <Button label={<i className="fa-solid fa-trash"></i>} className='btn border' onClick={() => handleDelete(row)} />
                     </>
                 )
             },
         },
     ];
+
 
 
 
@@ -101,7 +102,7 @@ const UserList = () => {
     return (
         <>
             {
-                singleUserModal && <SingleUserModal singleUser={singleUser} setSingleUser={setSingleUser} setSingleUserModal={setSingleUserModal} singleUserModal={singleUserModal}/>
+                singleUserModal && <SingleUserModal singleUser={singleUser} setSingleUser={setSingleUser} setSingleUserModal={setSingleUserModal} singleUserModal={singleUserModal} />
             }
             {
                 modalOpen && <EditUserModal modalOpen={modalOpen} setModalOpen={setModalOpen} seletedData={seletedData} />

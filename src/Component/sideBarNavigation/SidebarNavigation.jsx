@@ -34,7 +34,6 @@ export const combineClasses = (...classes) => {
 const SidebarNavigation = () => {
 
     const location = useLocation();
-
     // const sidebarObj = useMemo(() => {
     //     const temp = Object.keys(PORTALS)
     //     return temp?.length && temp.reduce((acc, item) => {
@@ -52,27 +51,16 @@ const SidebarNavigation = () => {
         <>
             <div className={styles.mainContainer}>
                 <ul>
-                    <NavLink className={styles.navLink} to="/">home</NavLink >
+                    <NavLink
+                        className={styles.navLink}
+                        to="/"
+                    >
+                        home
+                    </NavLink >
                     <NavLink className={styles.navLink} to="/about">about</NavLink>
                     <NavLink className={styles.navLink} to="/userList">user</NavLink>
                     <NavLink className={styles.navLink} to="/login">login</NavLink>
-                    {/* <NavLink
-                        className={({ isActive }) =>
-                            `${styles.navLink} ${isActive && styles.activeLink}`
-                        }
-                        to="/"
-                    >
-                        Home
-                    </NavLink>
-                    <NavLink className={`styles.navLink ${isActive('/about')}`} to="/about">
-                        About
-                    </NavLink>
-                    <NavLink className={`styles.navLink ${isActive('/userList')}`} to="/userList">
-                        User
-                    </NavLink>
-                    <NavLink className={`styles.navLink ${isActive('/login')}`} to="/login">
-                        Login
-                    </NavLink> */}
+                    <NavLink className={styles.navLink} onClick={() => localStorage.clear()} to="/login">Logout</NavLink>
                 </ul>
                 {/* {Object.entries(PORTALS).length && Object.entries(PORTALS).map(([key, value]) => {
                     console.log(PORTALS)
