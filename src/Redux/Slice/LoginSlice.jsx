@@ -5,13 +5,11 @@ const apiUrl = import.meta.env.VITE_REACT_API_URL;
 
 
 export const userLogin = createAsyncThunk("userLogin", async (data, { rejectWithValue }) => {
-    console.log(data)
     const response = await axios.post("https://dummyjson.com/auth/login", {
         username: data.username,
         password: data.password
     });
     const userData = response.data;
-    console.log(userData)
     return userData;
 }
 );

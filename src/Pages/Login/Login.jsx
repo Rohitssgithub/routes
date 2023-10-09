@@ -17,13 +17,16 @@ const LoginForm = ({ openLogin, closeModal, openRegi, setIsLogin, setIsRegister 
   const { loginUser, loading } = useSelector((state) => state.login)
   console.log(loginUser)
 
-  localStorage.setItem('userData',JSON.stringify(loginUser))
 
+  const setUserFun = () => {
+    localStorage.setItem('userData', JSON.stringify(loginUser))
+  }
   const onSubmit = async (values) => {
     console.log('values', values)
     dispatch(userLogin(values));
+    setUserFun()
     navigate('/')
-    
+
   };
   const initialValues = {
     username: '',
