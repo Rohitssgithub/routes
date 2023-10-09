@@ -84,8 +84,17 @@ const userReducer = createSlice({
     initialState: {
         allusers: [],
         singleUsers: [],
+        filterUser: [],
         loading: false,
         error: null,
+    },
+    reducers: {
+        searchUser: (state, action) => {
+            // state.searchData = action.payload;
+            state.filterUser = state.allusers.filter((ele) => {
+                return ele.name.toLowerCase().includes(action.payload)
+            })
+        },
     },
 
     extraReducers: {
@@ -151,4 +160,6 @@ const userReducer = createSlice({
     }
 })
 
-export default userReducer.reducer
+export default userReducer.reducer;
+
+export const { searchUser } = userReducer.actions;

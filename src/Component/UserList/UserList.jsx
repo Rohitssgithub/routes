@@ -16,9 +16,10 @@ import EditUserModal from '../Modal/EditUserModal';
 import Loading from '../Loading/Loading';
 import UserDeleteModal from '../Modal/UserDeleteModal';
 import SingleUserModal from '../Modal/SingleUserModal/SingleUserModal';
+import { searchUser } from '../../Redux/Slice/UserSlice';
 const UserList = () => {
     let dispatch = useDispatch()
-    const { allusers, loading } = useSelector((state) => state.users)
+    const { allusers, loading, filterUser } = useSelector((state) => state.users)
     const [modalOpen, setModalOpen] = useState(false)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
     let [user, setUsers] = useState([])
@@ -30,9 +31,8 @@ const UserList = () => {
     const [singleUserModal, setSingleUserModal] = useState(false);
     const [singleUser, setSingleUser] = useState(false);
 
+    console.log('filterUser', filterUser)
 
-
-    console.log('singleUser', singleUser)
     const handleUpdate = (data) => {
         setSelectedData(data)
         setModalOpen(true)
@@ -93,6 +93,11 @@ const UserList = () => {
         },
     ];
 
+    const handleChange = (e) => {
+        console.log('e.target.value', e.target.value)
+        dispatch(searchUser(e.target.value))
+    }
+
 
 
 
@@ -113,11 +118,14 @@ const UserList = () => {
             }
 
             <div className={styles.topDiv}>
+                <div class="mb-3">
+                    <input type="search" onChange={(e) => handleChange(e)} class="form-control" id="exampleFormControlInput1" placeholder="Search" />
+                </div>
                 <Button label="Add User" className='btn btn-danger my-3 ' onClick={handleAddFunction} />
             </div>
             <Table
                 columns={columns}
-                data={allusers}
+                data={filterUser.length == 0 ? allusers : filterUser}
                 className={styles.candidatesTable}
                 paginationProps={{
                     isPagination: true,

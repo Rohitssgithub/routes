@@ -27,7 +27,6 @@ const LoginForm = ({ openLogin, closeModal, openRegi, setIsLogin, setIsRegister 
     dispatch(userLogin(values));
     setUserFun()
     navigate('/')
-
   };
   const initialValues = {
     username: '',

@@ -15,7 +15,7 @@ export const userLogin = createAsyncThunk("userLogin", async (data, { rejectWith
 );
 
 const loginReducer = createSlice({
-    name: 'users',
+    name: 'login',
     initialState: {
         loginUser: [],
         loading: false,
