@@ -5,6 +5,7 @@ import '../Login/Login.scss'
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import FormikControl from '../../Component/formikControl/FormikControl';
 import { userLogin } from '../../Redux/Slice/LoginSlice';
+import Button from '../../Component/Button/Button';
 
 import * as Yup from 'yup'
 const LoginForm = ({ openLogin, closeModal, openRegi, setIsLogin, setIsRegister }) => {
@@ -69,7 +70,7 @@ const LoginForm = ({ openLogin, closeModal, openRegi, setIsLogin, setIsRegister 
                       name='password'
                     />
                     <div>
-                      <button type='submit' className='btn btn-danger'>login</button>
+                      <Button type='submit' label='Login' className='btn btn-danger my-3'>login</Button>
                     </div>
                   </Form>
                 )
