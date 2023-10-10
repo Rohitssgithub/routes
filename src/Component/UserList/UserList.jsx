@@ -47,7 +47,7 @@ const UserList = () => {
     const handleDelete = (data) => {
         setDeleteModalOpen(true)
         setDeleteId(data.id)
-        
+
     }
     const handleAddFunction = () => {
         setSelectedData({})
@@ -153,18 +153,7 @@ const UserList = () => {
             />
             {loading && <Loading />}
 
-            <ToastContainer
-                position="top-right"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
+        
 
         </>
     )
