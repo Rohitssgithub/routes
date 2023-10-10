@@ -19,6 +19,9 @@ import SingleUserModal from '../Modal/SingleUserModal/SingleUserModal';
 import { searchUser } from '../../Redux/Slice/UserSlice';
 import { debounce } from 'lodash'; // You need to install the lodash library
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const UserList = () => {
     let dispatch = useDispatch()
     const { allusers, loading, filterUser } = useSelector((state) => state.users)
@@ -33,6 +36,8 @@ const UserList = () => {
     const [singleUserModal, setSingleUserModal] = useState(false);
     const [singleUser, setSingleUser] = useState(false);
 
+
+
     console.log('filterUser', filterUser)
 
     const handleUpdate = (data) => {
@@ -42,6 +47,7 @@ const UserList = () => {
     const handleDelete = (data) => {
         setDeleteModalOpen(true)
         setDeleteId(data.id)
+        
     }
     const handleAddFunction = () => {
         setSelectedData({})
@@ -146,6 +152,19 @@ const UserList = () => {
 
             />
             {loading && <Loading />}
+
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
 
         </>
     )

@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../Redux/Slice/UserSlice';
 import FormikControl from '../formikControl/FormikControl';
 import styles from '../../Component/Modal/Modal.module.scss'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const EditUserModal = (props) => {
@@ -123,10 +125,12 @@ const EditUserModal = (props) => {
                             if (Object.keys(formData).length === 0) {
                                 dispatch(addUser(values))
                                 props?.setModalOpen(false)
+                                toast.success('User Added Successfully')
                             }
                             else {
                                 dispatch(updateUser({ id: ids, value: values }))
                                 props?.setModalOpen(false)
+                                toast.success('User updated Successfully')
                             }
                         }}
                     >
