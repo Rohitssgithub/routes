@@ -90,7 +90,6 @@ const userReducer = createSlice({
     },
     reducers: {
         searchUser: (state, action) => {
-            // state.searchData = action.payload;
             state.filterUser = state.allusers.filter((ele) => {
                 return ele.name.toLowerCase().includes(action.payload)
             })

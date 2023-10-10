@@ -3,28 +3,31 @@ import styles from './SidebarNavigation.module.scss'
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import { PATH, PORTALS_NAMES, PORTALS } from '../../constant/constant';
 import classNames from 'classnames';
-// console.log(PORTALS_NAMES)
+console.log(PORTALS_NAMES)
 
 
-// export const sideBarNavigation = Object.values(PORTALS_NAMES).reduce((acc, portalName) => {
-//     // console.log(Object.values(PATH[portalName].children))
-//     // return portalName
-//     const portalData = PATH[portalName];
+export const sideBarNavigation = Object.values(PORTALS_NAMES).reduce((acc, portalName) => {
+    console.log(Object.values(PATH))
+    // return portalName
+    console.log('portalName', portalName)
+    const portalData = PATH[portalName];
+  console.log('portalData', portalData)
 
-//     if (portalData && portalData.children) {
-//         acc[portalName] = Object.values(portalData.children)
-//             .filter(x => x.sidebar)
-//             .map((pageData, index) => ({
-//                 id: index + 1,
-//                 path: pageData.path,
-//                 pageName: pageData.sidebar.name || pageData.pageName
-//             }));
-//     } else {
-//         // Handle the case where PATH[portalName] or children are undefined
-//         console.error(`No data found for portal: ${portalName}`);
-//     }
-//     return acc
-// }, {})
+    if (portalData && portalData.children) {
+        acc[portalName] = Object.values(portalData.children)
+            .filter(x => x.sidebar)
+            .map((pageData, index) => ({
+                id: index + 1,
+                path: pageData.path,
+                pageName: pageData.sidebar.name || pageData.pageName
+            }));
+    } else {
+        // Handle the case where PATH[portalName] or children are undefined
+        console.error(`No data found for portal: ${portalName}`);
+    }
+    return acc
+}, {})
+
 
 export const combineClasses = (...classes) => {
     return classes.join(" ")
@@ -34,18 +37,18 @@ export const combineClasses = (...classes) => {
 const SidebarNavigation = () => {
 
     const location = useLocation();
-    // const sidebarObj = useMemo(() => {
-    //     const temp = Object.keys(PORTALS)
-    //     return temp?.length && temp.reduce((acc, item) => {
-    //         acc[item] = false
-    //         return acc
-    //     }, {})
-    // }, [])
-    // const [sidebarItemsOpen, setSidebarItemsOpen] = useState(sidebarObj);
+    const sidebarObj = useMemo(() => {
+        const temp = Object.keys(PORTALS)
+        return temp?.length && temp.reduce((acc, item) => {
+            acc[item] = false
+            return acc
+        }, {})
+    }, [])
+    const [sidebarItemsOpen, setSidebarItemsOpen] = useState(sidebarObj);
 
-    // console.log(sidebarItemsOpen)
+    console.log(sidebarItemsOpen)
 
-    // console.log(PORTALS)
+    console.log(PORTALS)
 
     return (
         <>
@@ -81,6 +84,7 @@ const SidebarNavigation = () => {
                                 }
                             </NavLink>
                             {sidebarItemsOpen?.[key] && sideBarNavigation?.[key].map((data) => (
+                                console.log('data', data)
                                 <NavLink
                                     key={data.id}
                                     className={({ isActive }) =>

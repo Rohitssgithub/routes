@@ -20,22 +20,21 @@ export const PATH = {
         path: '/login',
         pageName: "Login",
     },
-    [PORTALS_NAMES["ADMIN"]]: {
-        path: PORTALS[PORTALS_NAMES["ADMIN"]],
+    [PORTALS_NAMES["USER"]]: {
+        path: PORTALS[PORTALS_NAMES["USER"]],
         private: true,
         children: {
             USER_PROFILE: {
-                path: PORTALS[PORTALS_NAMES["ADMIN"]] + "/profile",
+                path: PORTALS[PORTALS_NAMES["USER"]] + "/profile",
                 element: <User />,
                 pageName: "user profile",
                 logs: true,
-                showGenerateBtn: true,
                 sidebar: {
                     show: true
                 },
             },
             USER_LIST: {
-                path: PORTALS[PORTALS_NAMES["ADMIN"]] + "/userlist",
+                path: PORTALS[PORTALS_NAMES["USER"]] + "/userlist",
                 pageName: "user list",
                 element: <UserList />,
                 sidebar: {
