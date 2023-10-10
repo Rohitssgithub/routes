@@ -14,7 +14,7 @@ const Table = (props) => {
                 className={styles.table}
                 progressComponent={<Loading />}
                 pagination
-                
+                responsive
             />
             {/* <Pagination {...props?.paginationProps} /> */}
         </>
