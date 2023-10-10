@@ -20,7 +20,7 @@ import { searchUser } from '../../Redux/Slice/UserSlice';
 import { debounce } from 'lodash'; // You need to install the lodash library
 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const UserList = () => {
     let dispatch = useDispatch()
