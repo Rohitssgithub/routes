@@ -16,8 +16,8 @@ const LoginForm = ({ openLogin, closeModal, openRegi, setIsLogin, setIsRegister 
     password: '',
   })
   const { loginUser, loading } = useSelector((state) => state.login)
-  console.log(loginUser)
 
+  console.log('loginUser', loginUser)
 
   const setUserFun = () => {
     localStorage.setItem('userData', JSON.stringify(loginUser))

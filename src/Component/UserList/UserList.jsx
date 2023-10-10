@@ -17,6 +17,8 @@ import Loading from '../Loading/Loading';
 import UserDeleteModal from '../Modal/UserDeleteModal';
 import SingleUserModal from '../Modal/SingleUserModal/SingleUserModal';
 import { searchUser } from '../../Redux/Slice/UserSlice';
+import { debounce } from 'lodash'; // You need to install the lodash library
+
 const UserList = () => {
     let dispatch = useDispatch()
     const { allusers, loading, filterUser } = useSelector((state) => state.users)
@@ -53,7 +55,6 @@ const UserList = () => {
     const columns = [
         {
             name: 'Name',
-            // selector: row => row.name,
             selector: (row) => (
                 <span
                     className="user-name-link"
@@ -93,12 +94,18 @@ const UserList = () => {
         },
     ];
 
+
+
     const handleChange = (e) => {
-        console.log('e.target.value', e.target.value)
-        dispatch(searchUser(e.target.value))
-    }
-
-
+        const searchValue = e.target.value;
+        console.log('Input value:', searchValue);
+        let timer = setTimeout(() => {
+            dispatch(searchUser(searchValue))
+        }, 1000);
+        return () => {
+            clearTimeout(timer)
+        }
+    };
 
 
     useEffect(() => {

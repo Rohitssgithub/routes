@@ -10,6 +10,7 @@ export const userLogin = createAsyncThunk("userLogin", async (data, { rejectWith
         password: data.password
     });
     const userData = response.data;
+    console.log('userData', userData)
     return userData;
 }
 );
@@ -27,6 +28,7 @@ const loginReducer = createSlice({
             state.loading = true;
         },
         [userLogin.fulfilled]: (state, action) => {
+            console.log('action.payload', action.payload)
             state.loading = false;
             state.loginUser = action.payload;
         },
