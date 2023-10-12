@@ -26,23 +26,21 @@ export const PATH = {
         path: PORTALS[PORTALS_NAMES["USER"]],
         private: true,
         children: {
-            USER_PROFILE: {
-                path: PORTALS[PORTALS_NAMES["USER"]] + "/user",
-                element: <UserProfile />,
-                pageName: "user profile",
-                logs: true,
-                sidebar: {
-                    show: true
-                },
-            },
             USER_LIST: {
                 path: PORTALS[PORTALS_NAMES["USER"]] + "/userlist",
                 element: <UserList />,
                 pageName: "user list",
-                logs: true,
                 sidebar: {
                     show: true
                 }
+            },
+            USER_PROFILE: {
+                path: PORTALS[PORTALS_NAMES["USER"]] + "/user",
+                element: <UserProfile />,
+                pageName: "user profile",
+                sidebar: {
+                    show: true
+                },
             },
         },
     },
@@ -54,7 +52,6 @@ export const PATH = {
                 path: PORTALS[PORTALS_NAMES["ADMIN"]] + "/profile",
                 element: <Admin />,
                 pageName: "Admin profile",
-                logs: true,
                 sidebar: {
                     show: true
                 },
@@ -63,7 +60,6 @@ export const PATH = {
                 path: PORTALS[PORTALS_NAMES["ADMIN"]] + "/adminlist",
                 pageName: "Admin list",
                 element: <AdminList />,
-                logs: true,
                 sidebar: {
                     show: true
                 }
@@ -78,4 +74,4 @@ export const PAGINATION = {
     DEFAULT_ROWS_PER_PAGE: 10,
     DEFAULT_CURRENT_PAGE: 1,
     NO_BREAK_PAGE: 4,
-  };
+};

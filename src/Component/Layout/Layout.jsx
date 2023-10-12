@@ -6,6 +6,7 @@ import styles from '../../Component/sideBarNavigation/SidebarNavigation.module.s
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
+import Topbar from '../Topbar/Topbar';
 
 const Layout = () => {
 
@@ -17,7 +18,10 @@ const Layout = () => {
             <div className={styles.mainbodyContainer}>
                 <SidebarNavigation />
                 <div className={styles.contentDiv}>
-                    <Outlet />
+                    <Topbar />
+                    <div>
+                        <Outlet />
+                    </div>
                 </div>
             </div>
             <ToastContainer

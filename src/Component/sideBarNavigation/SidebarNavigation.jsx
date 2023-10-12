@@ -4,7 +4,8 @@ import { Navigations } from '../../Component/sideBarNavigation/Navigations'
 import { useLocation, NavLink } from 'react-router-dom';
 import { PORTALS } from '../../constant/constant';
 import { combineClasses } from '../../utils';
-// import styles from './HomeLayout.module.scss'
+import rightIcon from "../../assets/chevron-right.svg"
+
 
 const SidebarNavigation = () => {
 
@@ -36,7 +37,6 @@ const SidebarNavigation = () => {
             {/* </div> */}
             <div className={styles.mainContainer}>
 
-                <div className={styles.leftSideContainer}>
                     <div className={styles.navContainer}>
                         {Object.entries(PORTALS).length && Object.entries(PORTALS).map(([key, value]) => {
                             return (
@@ -60,7 +60,6 @@ const SidebarNavigation = () => {
                                                 to={data.path}
                                                 // state={{ previousPath: location.pathname }}
                                             >
-                                                <img src={data?.icon} alt="" className={styles.icon} />
                                                 <p className={styles.pageli}>{data.pageName}</p>
                                             </NavLink>
 
@@ -71,12 +70,12 @@ const SidebarNavigation = () => {
                         })}
 
                         <NavLink
+                        className={styles.portalNavLink}
                             onClick={() => localStorage.clear()} to="/login"
                         >
                             <p>Logout</p>
                         </NavLink>
                     </div>
-                </div>
             </div>
         </>
     )
