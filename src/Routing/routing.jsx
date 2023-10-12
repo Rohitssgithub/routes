@@ -25,10 +25,10 @@ export const router = createBrowserRouter([
         path: "/",
         element: <PrivateRoute component={Layout} />,
         children: [
-            ...Object.values(PATH).filter(x => x.private).map(portal => ({
+            ...Object.values(PATH).filter(x => x.private)?.map(portal => ({
                 path: portal.path,
                 children: [
-                    ...Object.values(portal.children).map(child => ({
+                    ...Object.values(portal.children)?.map(child => ({
                         path: child.path,
                         element: child.element
                     }),

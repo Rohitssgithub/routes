@@ -12,7 +12,6 @@ const TopBar = (props) => {
 
     let userData = localStorage.getItem('userData');
     userData = JSON.parse(userData)
-    console.log('userData', userData)
 
     const pageName = useMemo(() => {
         let temp = {}
@@ -33,6 +32,7 @@ const TopBar = (props) => {
                 <div>
                     <span>{userData.email}</span>
                     <NavLink
+                        className='btn btn-primary'
                         onClick={() => localStorage.clear()} to="/login"
                     >
                         Logout

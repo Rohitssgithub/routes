@@ -5,11 +5,13 @@ import Admin from '../Component/Admin/Admin'
 import Home from "../Pages/Home/Home"
 export const PORTALS_NAMES = {
     "ADMIN": "admin",
-    "USER": "user"
+    "USER": "user",
+    // 'HOME':"home"
 }
 
 // portals paths
 export const PORTALS = {
+    // [PORTALS_NAMES["HOME"]]: "/",
     [PORTALS_NAMES["USER"]]: "/user",
     [PORTALS_NAMES["ADMIN"]]: "/admin",
 }
@@ -24,6 +26,15 @@ export const PATH = {
         path: '/login',
         pageName: "Login",
     },
+    // [PORTALS_NAMES["HOME"]]: {
+    //     path: PORTALS[PORTALS_NAMES["HOME"]],
+    //     private: true,
+    //     // pageName: "user list",
+    //     element: <Home />,
+    //     sidebar: {
+    //         show: true
+    //     }
+    // },
     [PORTALS_NAMES["USER"]]: {
         path: PORTALS[PORTALS_NAMES["USER"]],
         private: true,

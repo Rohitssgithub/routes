@@ -19,30 +19,21 @@ const SidebarNavigation = () => {
     }, [])
     const [sidebarItemsOpen, setSidebarItemsOpen] = useState(sidebarObj);
 
+
+
+
     return (
         <>
-            {/* <div className={styles.mainContainer}> */}
-            {/* <ul>
-                    <NavLink
-                        className={styles.navLink}
-                        to="/"
-                    >
-                        home
-                    </NavLink >
-                    <NavLink className={styles.navLink} to="/about">about</NavLink>
-                    <NavLink className={styles.navLink} to="/userList">user</NavLink>
-                    <NavLink className={styles.navLink} to="/login">login</NavLink>
-                    <NavLink className={styles.navLink} onClick={() => localStorage.clear()} to="/login">Logout</NavLink>
-                </ul> */}
-            {/* </div> */}
             <div className={styles.mainContainer}>
-
                 <div className={styles.navContainer}>
                     <NavLink
-                        className={styles.portalNavLink}
+                        exact 
                         to="/"
+                        className={({ isActive }) =>
+                            `${styles.portalNavLink} ${isActive ? styles.portalLinkactive : ""}`
+                        }
                     >
-                        <p>Home</p>
+                        <p style={styles.portalName}>Home</p>
                     </NavLink>
                     {Object.entries(PORTALS).length && Object.entries(PORTALS).map(([key, value]) => {
                         return (
@@ -64,7 +55,6 @@ const SidebarNavigation = () => {
                                                 `${styles.navLink} ${!isActive && styles.linkHoverEffect} ${isActive && styles.activeLink}`
                                             }
                                             to={data.path}
-                                        // state={{ previousPath: location.pathname }}
                                         >
                                             <p className={styles.pageli}>{data.pageName}</p>
                                         </NavLink>
@@ -75,7 +65,7 @@ const SidebarNavigation = () => {
                         )
                     })}
 
-                    
+
                 </div>
             </div>
         </>
