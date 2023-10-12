@@ -51,22 +51,30 @@ const SidebarNavigation = () => {
                                         {/* <img src={rightIcon} alt="expand menu" className={`${styles.iconArrowImage} ${styles.iconArrowImage} ${sidebarItemsOpen?.[key] && styles.animatIcon}`} /> */}
                                     </NavLink>
                                     {sidebarItemsOpen?.[key] && Navigations?.[key].map((data) => (
-                                        <NavLink
-                                            key={data.id}
-                                            className={({ isActive }) =>
-                                                `${styles.navLink} ${!isActive && styles.linkHoverEffect} ${isActive && styles.activeLink}`
-                                            }
-                                            to={data.path}
-                                            state={{ previousPath: location.pathname }}
-                                        >
-                                            <img src={data?.icon} alt="" className={styles.icon} />
-                                            <p className={styles.pageli}>{data.pageName}</p>
-                                        </NavLink>
+                                        <>
+                                            <NavLink
+                                                key={data.id}
+                                                className={({ isActive }) =>
+                                                    `${styles.navLink} ${!isActive && styles.linkHoverEffect} ${isActive && styles.activeLink}`
+                                                }
+                                                to={data.path}
+                                                state={{ previousPath: location.pathname }}
+                                            >
+                                                <img src={data?.icon} alt="" className={styles.icon} />
+                                                <p className={styles.pageli}>{data.pageName}</p>
+                                            </NavLink>
+
+                                        </>
                                     ))}
                                 </div>
                             )
                         })}
 
+                        <NavLink
+                            onClick={() => localStorage.clear()} to="/login"
+                        >
+                            <p>Logout</p>
+                        </NavLink>
                     </div>
                 </div>
             </div>

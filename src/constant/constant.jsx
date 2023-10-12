@@ -9,8 +9,8 @@ export const PORTALS_NAMES = {
 
 // portals paths
 export const PORTALS = {
-    [PORTALS_NAMES["ADMIN"]]: "/admin",
     [PORTALS_NAMES["USER"]]: "/user",
+    [PORTALS_NAMES["ADMIN"]]: "/admin",
 }
 
 export const PATH = {
