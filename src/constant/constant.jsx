@@ -1,5 +1,7 @@
 import UserList from "../Component/UserList/UserList"
-import User from '../Component/User/User'
+import UserProfile from '../Component/User/UserProfile'
+import AdminList from "../Component/Admin/AdminList"
+import Admin from '../Component/Admin/Admin'
 export const PORTALS_NAMES = {
     "ADMIN": "admin",
     "USER": "user"
@@ -25,8 +27,8 @@ export const PATH = {
         private: true,
         children: {
             USER_PROFILE: {
-                path: PORTALS[PORTALS_NAMES["USER"]] + "/profile",
-                element: <User />,
+                path: PORTALS[PORTALS_NAMES["USER"]] + "/user",
+                element: <UserProfile />,
                 pageName: "user profile",
                 logs: true,
                 sidebar: {
@@ -35,8 +37,8 @@ export const PATH = {
             },
             USER_LIST: {
                 path: PORTALS[PORTALS_NAMES["USER"]] + "/userlist",
-                pageName: "user list",
                 element: <UserList />,
+                pageName: "user list",
                 logs: true,
                 sidebar: {
                     show: true
@@ -50,7 +52,7 @@ export const PATH = {
         children: {
             ADMIN_PROFILE: {
                 path: PORTALS[PORTALS_NAMES["ADMIN"]] + "/profile",
-                element: <User />,
+                element: <Admin />,
                 pageName: "Admin profile",
                 logs: true,
                 sidebar: {
@@ -60,7 +62,7 @@ export const PATH = {
             ADMIN_LIST: {
                 path: PORTALS[PORTALS_NAMES["ADMIN"]] + "/adminlist",
                 pageName: "Admin list",
-                element: <UserList />,
+                element: <AdminList />,
                 logs: true,
                 sidebar: {
                     show: true
