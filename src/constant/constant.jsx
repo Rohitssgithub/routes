@@ -2,6 +2,7 @@ import UserList from "../Component/UserList/UserList"
 import UserProfile from '../Component/User/UserProfile'
 import AdminList from "../Component/Admin/AdminList"
 import Admin from '../Component/Admin/Admin'
+import Home from "../Pages/Home/Home"
 export const PORTALS_NAMES = {
     "ADMIN": "admin",
     "USER": "user"
@@ -17,6 +18,7 @@ export const PATH = {
     DEFAULT: {
         path: "/",
         pageName: "Home",
+        element: <Home />
     },
     LOGIN: {
         path: '/login',

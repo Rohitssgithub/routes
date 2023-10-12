@@ -17,6 +17,7 @@ const Layout = () => {
         <>
             <div className={styles.mainbodyContainer}>
                 <SidebarNavigation />
+
                 <div className={styles.contentDiv}>
                     <Topbar />
                     <div>

@@ -1,60 +1,48 @@
-// import React, { useMemo, useState } from 'react';
-// import { PATH } from '../../constant/constant';
-// import { useLocation } from 'react-router-dom';
-// import { useNavigate } from "react-router-dom";
+import React, { Fragment, memo, useEffect, useMemo, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { PATH } from "../../constant/constant";
+import { useNavigate } from "react-router-dom";
+import styles from './Topbar.module.scss'
 
-// const Topbar = () => {
-//     const [currentPath, setCurrentPath] = useState({});
-//     let location = useLocation()
-//     let navigate = useNavigate()
-
-//     const pageName = useMemo(() => {
-//         let temp = {}
-//         Object.values(PATH).filter(x => x.private).forEach(portal => {
-//             console.log('portal', portal)
-//             const obj = Object.values(portal.children).find(pathData => pathData.path)
-//             console.log('obj', obj)
-//             if (obj)
-//                 temp = obj
-//         })
-//         setCurrentPath(temp)
-//         console.log('temp', temp)
-//         return (temp?.pageName || "")
-
-//     }, [location]);
-//     console.log('pageName', pageName)
-//     return (
-//         <>
-//             <div>
-//                 <p>{pageName}</p>
-//             </div>
-//         </>
-//     )
-// }
-
-// export default Topbar
+const TopBar = (props) => {
+    const [currentPath, setCurrentPath] = useState({});
+    const location = useLocation();
+    const navigate = useNavigate();
 
 
-import React, { useMemo } from 'react';
-import { PATH } from '../../constant/constant';
-import { useLocation } from 'react-router-dom';
-
-const Topbar = () => {
-    let location = useLocation();
+    let userData = localStorage.getItem('userData');
+    userData = JSON.parse(userData)
+    console.log('userData', userData)
 
     const pageName = useMemo(() => {
-        // Find the path that matches the current location
-        const matchingPath = Object.values(PATH).find(pathData => pathData.path === location.pathname);
+        let temp = {}
+        Object.values(PATH).filter(x => x.private).forEach(portal => {
+            const obj = Object.values(portal.children).find(pathData => pathData.path === location.pathname)
+            if (obj)
+                temp = obj
+        })
+        setCurrentPath(temp)
+        return (temp?.pageName || "") + (temp?.logs ? " - Report Logs" : "")
+    }, [location]);
 
-        // Extract the pageName from the matching path
-        return matchingPath ? matchingPath.pageName : "";
-    }, [location.pathname]);
 
     return (
-        <div>
-            <p>{pageName}</p>
-        </div>
-    );
-}
+        <>
+            <div className={styles.topbarDiv}>
+                <p>{pageName}</p>
+                <div>
+                    <span>{userData.email}</span>
+                    <NavLink
+                        onClick={() => localStorage.clear()} to="/login"
+                    >
+                        Logout
+                    </NavLink>
+                </div>
+            </div>
 
-export default Topbar;
+
+        </>
+    );
+};
+
+export default memo(TopBar);
