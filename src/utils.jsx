@@ -4,3 +4,7 @@ export const getToken = () => {
     // return data
     return localStorage.getItem('userData')
 }
+
+export const combineClasses = (...classes) => {
+    return classes.join(" ")
+}

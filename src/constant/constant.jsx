@@ -37,6 +37,31 @@ export const PATH = {
                 path: PORTALS[PORTALS_NAMES["USER"]] + "/userlist",
                 pageName: "user list",
                 element: <UserList />,
+                logs: true,
+                sidebar: {
+                    show: true
+                }
+            },
+        },
+    },
+    [PORTALS_NAMES["ADMIN"]]: {
+        path: PORTALS[PORTALS_NAMES["ADMIN"]],
+        private: true,
+        children: {
+            ADMIN_PROFILE: {
+                path: PORTALS[PORTALS_NAMES["ADMIN"]] + "/profile",
+                element: <User />,
+                pageName: "Admin profile",
+                logs: true,
+                sidebar: {
+                    show: true
+                },
+            },
+            ADMIN_LIST: {
+                path: PORTALS[PORTALS_NAMES["ADMIN"]] + "/adminlist",
+                pageName: "Admin list",
+                element: <UserList />,
+                logs: true,
                 sidebar: {
                     show: true
                 }

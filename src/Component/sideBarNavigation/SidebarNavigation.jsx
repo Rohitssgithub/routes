@@ -1,38 +1,10 @@
 import React, { useMemo, useState } from 'react'
-import styles from './SidebarNavigation.module.scss'
-import { Link, useLocation, NavLink } from 'react-router-dom';
-import { PATH, PORTALS_NAMES, PORTALS } from '../../constant/constant';
-import classNames from 'classnames';
-console.log(PORTALS_NAMES)
-
-
-export const sideBarNavigation = Object.values(PORTALS_NAMES).reduce((acc, portalName) => {
-    console.log(Object.values(PATH))
-    // return portalName
-    console.log('portalName', portalName)
-    const portalData = PATH[portalName];
-  console.log('portalData', portalData)
-
-    if (portalData && portalData.children) {
-        acc[portalName] = Object.values(portalData.children)
-            .filter(x => x.sidebar)
-            .map((pageData, index) => ({
-                id: index + 1,
-                path: pageData.path,
-                pageName: pageData.sidebar.name || pageData.pageName
-            }));
-    } else {
-        // Handle the case where PATH[portalName] or children are undefined
-        console.error(`No data found for portal: ${portalName}`);
-    }
-    return acc
-}, {})
-
-
-export const combineClasses = (...classes) => {
-    return classes.join(" ")
-}
-
+import styles from './SidebarNavigation.module.scss';
+import { Navigations } from '../../Component/sideBarNavigation/Navigations'
+import { useLocation, NavLink } from 'react-router-dom';
+import { PORTALS } from '../../constant/constant';
+import { combineClasses } from '../../utils';
+// import styles from './HomeLayout.module.scss'
 
 const SidebarNavigation = () => {
 
@@ -46,14 +18,10 @@ const SidebarNavigation = () => {
     }, [])
     const [sidebarItemsOpen, setSidebarItemsOpen] = useState(sidebarObj);
 
-    console.log(sidebarItemsOpen)
-
-    console.log(PORTALS)
-
     return (
         <>
-            <div className={styles.mainContainer}>
-                <ul>
+            {/* <div className={styles.mainContainer}> */}
+            {/* <ul>
                     <NavLink
                         className={styles.navLink}
                         to="/"
@@ -64,42 +32,43 @@ const SidebarNavigation = () => {
                     <NavLink className={styles.navLink} to="/userList">user</NavLink>
                     <NavLink className={styles.navLink} to="/login">login</NavLink>
                     <NavLink className={styles.navLink} onClick={() => localStorage.clear()} to="/login">Logout</NavLink>
-                </ul>
-                {/* {Object.entries(PORTALS).length && Object.entries(PORTALS).map(([key, value]) => {
-                    console.log(PORTALS)
-                    return (
-                        <div key={key} className={styles.linksDiv}>
-                            <NavLink
-                                to={location.pathname}
-                                className={({ isActive }) =>
-                                    combineClasses(styles.portalNavLink, isActive ? styles.portalLinkactive : "")}
-                                onClick={() => setSidebarItemsOpen({ ...sidebarItemsOpen, [key]: !sidebarItemsOpen?.[key] })}
-                            >
-                                <p style={styles.portalName}>{key}</p>
-                                {
-                                    sidebarItemsOpen?.[key] ?
-                                        <img src={downIcon} alt="collapse menu" />
-                                        :
-                                        <img src={rightIcon} alt="expand menu" />
-                                }
-                            </NavLink>
-                            {sidebarItemsOpen?.[key] && sideBarNavigation?.[key].map((data) => (
-                                console.log('data', data)
-                                <NavLink
-                                    key={data.id}
-                                    className={({ isActive }) =>
-                                        `${styles.navLink} ${!isActive && styles.linkHoverEffect} ${isActive && styles.activeLink}`
-                                    }
-                                    to={data.path}
-                                    state={{ previousPath: location.pathname }}
-                                >
-                                    <img src={data?.icon} alt="" className={styles.icon} />
-                                    <p className={styles.pageli}>{data.pageName}</p>
-                                </NavLink>
-                            ))}
-                        </div>
-                    )
-                })} */}
+                </ul> */}
+            {/* </div> */}
+            <div className={styles.mainContainer}>
+
+                <div className={styles.leftSideContainer}>
+                    <div className={styles.navContainer}>
+                        {Object.entries(PORTALS).length && Object.entries(PORTALS).map(([key, value]) => {
+                            return (
+                                <div key={key} className={styles.linksDiv}>
+                                    <NavLink
+                                        to={location.pathname}
+                                        className={({ isActive }) =>
+                                            combineClasses(styles.portalNavLink, isActive ? styles.portalLinkactive : "")}
+                                        onClick={() => setSidebarItemsOpen({ ...sidebarItemsOpen, [key]: !sidebarItemsOpen?.[key] })}
+                                    >
+                                        <p style={styles.portalName}>{key}</p>
+                                        {/* <img src={rightIcon} alt="expand menu" className={`${styles.iconArrowImage} ${styles.iconArrowImage} ${sidebarItemsOpen?.[key] && styles.animatIcon}`} /> */}
+                                    </NavLink>
+                                    {sidebarItemsOpen?.[key] && Navigations?.[key].map((data) => (
+                                        <NavLink
+                                            key={data.id}
+                                            className={({ isActive }) =>
+                                                `${styles.navLink} ${!isActive && styles.linkHoverEffect} ${isActive && styles.activeLink}`
+                                            }
+                                            to={data.path}
+                                            state={{ previousPath: location.pathname }}
+                                        >
+                                            <img src={data?.icon} alt="" className={styles.icon} />
+                                            <p className={styles.pageli}>{data.pageName}</p>
+                                        </NavLink>
+                                    ))}
+                                </div>
+                            )
+                        })}
+
+                    </div>
+                </div>
             </div>
         </>
     )
