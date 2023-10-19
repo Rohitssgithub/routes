@@ -4,9 +4,9 @@ import AdminList from "../Component/Admin/AdminList"
 import Admin from '../Component/Admin/Admin'
 import Home from "../Pages/Home/Home"
 export const PORTALS_NAMES = {
-    "ADMIN": "admin",
+    // 'HOME':"home",
+    "ADMIN": "admin",   
     "USER": "user",
-    // 'HOME':"home"
 }
 
 // portals paths
@@ -26,6 +26,7 @@ export const PATH = {
         path: '/login',
         pageName: "Login",
     },
+
     // [PORTALS_NAMES["HOME"]]: {
     //     path: PORTALS[PORTALS_NAMES["HOME"]],
     //     private: true,
@@ -39,6 +40,7 @@ export const PATH = {
         path: PORTALS[PORTALS_NAMES["USER"]],
         private: true,
         children: {
+
             USER_LIST: {
                 path: PORTALS[PORTALS_NAMES["USER"]] + "/userlist",
                 element: <UserList />,

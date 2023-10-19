@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { httpRequest } from '../../services/apiservices';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const apiUrl = import.meta.env.VITE_REACT_API_URL;
 
 
@@ -25,36 +26,22 @@ export const fetchSingleUser = createAsyncThunk(
             console.log("data", data)
             return data.data
         } catch (err) {
-            console.log(err)
+            // console.log(err)
+            return rejectWithValue(err);
+
         }
     }
 )
 export const addUser = createAsyncThunk("addUser", async (formData, { rejectWithValue }) => {
     console.log('call')
-    // const response = await fetch(`${apiUrl}/user`,
-    //     {
-    //         method: "POST",
-    //         mode: 'cors',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(formData),
-    //     }
-    // );
-    // try {
-    //     const result = await response.json();
-    //     console.log(result)
-    //     return result;
-    // } catch (error) {
-    //     return rejectWithValue(error);
-    // }
     try {
-        // const result = await response;
-        // console.log(result)
         const response = await httpRequest.post('/user', formData)
         console.log('response', response)
+        toast.success('User Added Successfully')
         return response.data;
     } catch (error) {
+        console.log('error', error)
+        toast.error('error while creating user')
         return rejectWithValue(error);
     }
 })

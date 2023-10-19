@@ -26,7 +26,7 @@ const SidebarNavigation = () => {
         <>
             <div className={styles.mainContainer}>
                 <div className={styles.navContainer}>
-                    <NavLink
+                    {/* <NavLink
                         exact
                         to="/"
                         className={({ isActive }) =>
@@ -34,7 +34,7 @@ const SidebarNavigation = () => {
                         }
                     >
                         <p style={styles.portalName}>Home</p>
-                    </NavLink>
+                    </NavLink> */}
                     {Object.entries(PORTALS).length && Object.entries(PORTALS).map(([key, value]) => {
                         return (
                             <div key={key} className={styles.linksDiv}>

@@ -66,59 +66,7 @@ const EditUserModal = (props) => {
         <>
             <BasicModal heading={isUpdating ? 'update user' : 'Add user'} {...props}>
                 <div>
-                    {/* <Formik
-                        initialValues={Object.keys(formData).length === 0 ? initialValues : modi}
-                        validationSchema={SignupSchema}
-                        onSubmit={values => {
-                            console.log('values', values)
 
-                            if (Object.keys(formData).length === 0) {
-                                dispatch(addUser(values))
-                                props?.setModalOpen(false)
-                            }
-                            else {
-                                dispatch(updateUser({ id: ids, value: values }))
-                                props?.setModalOpen(false)
-                            }
-                        }}
-                    >
-                        {({ errors, touched }) => (
-                            <Form>
-                                <div className="mb-4">
-                                    <label htmlFor="exampleFormControlInput1" >Name</label>
-                                    <Field name="name"
-                                        className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')}
-                                        placeholder="Enter your Name" />
-                                    {errors.name && touched.name ? (
-                                        <span className='error-text'>{errors.name}</span>
-                                    ) : null}
-                                </div>
-                                <div className="mb-4">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
-                                    <Field name="email"
-                                        className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')}
-                                        placeholder="Enter your Email" />
-                                    {errors.email && touched.email ? (
-                                        <span className='error-text'>{errors.email}</span>
-                                    ) : null}
-                                </div>
-
-                                <div className="mb-3">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Phone No.</label>
-                                    <Field name="phone" type="text"
-                                        className={'form-control' + (errors.phone && touched.phone ? ' is-invalid' : '')} placeholder="Enter your phone number" />
-                                    {errors.phone && touched.phone ?
-                                        <span className='error-text'>{errors.phone}</span>
-                                        : null}
-                                </div>
-                                <div className="mb-3 text-center">
-                                    <Button label={isUpdating ? 'update' : 'Add'} className='btn btn-danger mx-2' type='submit' />
-                                    <Button label='close' className='btn btn-primary' onClick={handleCloseFun} />
-                                </div>
-                            </Form>
-                        )}
-
-                    </Formik> */}
                     <Formik
                         initialValues={Object.keys(formData).length === 0 ? initialValues : modi}
                         validationSchema={SignupSchema}
@@ -128,12 +76,12 @@ const EditUserModal = (props) => {
                             if (Object.keys(formData).length === 0) {
                                 dispatch(addUser(values))
                                 props?.setModalOpen(false)
-                                toast.success('User Added Successfully')
+                                // toast.success('User Added Successfully')
                             }
                             else {
                                 dispatch(updateUser({ id: ids, value: values }))
                                 props?.setModalOpen(false)
-                                toast.success('User updated Successfully')
+                                // toast.success('User updated Successfully')
                             }
                         }}
                     >
