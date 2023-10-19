@@ -55,9 +55,11 @@ export const updateUser = createAsyncThunk(
         try {
             let data = await httpRequest.put(`/user/${thunkAPI.id}`, thunkAPI.value);
             console.log("data", data)
+            toast.success('User updated Successfully')
             return data.data
         } catch (err) {
             console.log(err)
+        toast.error('error while updating user')
         }
     }
 )
