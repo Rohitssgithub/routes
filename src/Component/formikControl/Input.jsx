@@ -8,12 +8,13 @@ import styles from '../../Component/formikControl/Input.module.scss'
 const Input = (props) => {
     console.log(props)
     const { label, name, type, icon, ...rest } = props;
+    console.log('rest', rest)
+    console.log('type', type)
     return (
         <div className={styles.inputControl}>
             <label htmlFor={name}>{label}</label>
-            <Field name={name} {...rest}
+            <Field name={name} type={type} {...rest}
                 className={styles.inputField}
-
             >
                 {/* {
                     ({ field }) => {

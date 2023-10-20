@@ -18,12 +18,6 @@ const Formiks = () => {
         gender: Yup.string().required('this field is required'),
         langauage: Yup.array()
             .required('This field is required'),
-        // city: Yup.string().required('This field is required'),
-        // city: Yup.string()
-        //     .required('Please select a city')
-        //     .test('is-required', 'Please select a city', (value) => {
-        //         return value !== 'Please select a city';
-        //     }),
         city: Yup.array()
             .min(1, 'Select at least one language') // Require at least one selection
             .of(
@@ -33,7 +27,15 @@ const Formiks = () => {
                 })
             )
             .required('This field is required'),
-        date: Yup.date().required('this is required')
+        date: Yup.date().required('this is required'),
+        imageFile: Yup.string()
+            .test('is-pdf', 'Only PDF documents are allowed', (value) => {
+                if (!value) {
+                    return true;
+                }
+                return value.endsWith('.pdf');
+            })
+            .required('This field is required'),
     })
 
     const initialValues = {
@@ -43,6 +45,7 @@ const Formiks = () => {
         gender: '',
         langauage: '',
         city: '',
+        imageFile: null,
         date: null
     }
     const radioOptions = [
@@ -112,6 +115,15 @@ const Formiks = () => {
 
                                 <div className='col-4'>
                                     <FormikControl
+                                        control='input'
+                                        type='file'
+                                        label='file'
+                                        placeholder='Upload file'
+                                        name='imageFile'
+                                    />
+                                </div>
+                                <div className='col-4'>
+                                    <FormikControl
                                         control='radio'
                                         label=' gender'
                                         name='gender'
@@ -135,6 +147,8 @@ const Formiks = () => {
                                         options={selectOptions}
                                     />
                                 </div>
+
+
 
                                 <FormikControl
                                     control='date'
