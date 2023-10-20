@@ -42,8 +42,8 @@ const Formiks = () => {
     ]
 
     const selectOptions = [
-        { key: 'Mumbai', value: 'mumbai' },
-        { key: 'Pune', value: 'pune' }
+        { label: 'Mumbai', value: 'mumbai' },
+        { label: 'Pune', value: 'pune' }
     ]
 
 
