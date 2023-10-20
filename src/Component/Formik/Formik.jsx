@@ -18,7 +18,21 @@ const Formiks = () => {
         gender: Yup.string().required('this field is required'),
         langauage: Yup.array()
             .required('This field is required'),
-        city: Yup.string().required('This field is required'),
+        // city: Yup.string().required('This field is required'),
+        // city: Yup.string()
+        //     .required('Please select a city')
+        //     .test('is-required', 'Please select a city', (value) => {
+        //         return value !== 'Please select a city';
+        //     }),
+        city: Yup.array()
+            .min(1, 'Select at least one language') // Require at least one selection
+            .of(
+                Yup.object().shape({
+                    label: Yup.string(),
+                    value: Yup.string(),
+                })
+            )
+            .required('This field is required'),
         date: Yup.date().required('this is required')
     })
 
@@ -40,11 +54,16 @@ const Formiks = () => {
         { key: 'English', value: 'english' },
         { key: 'Hindi', value: 'hindi' }
     ]
-
     const selectOptions = [
         { label: 'Mumbai', value: 'mumbai' },
-        { label: 'Pune', value: 'pune' }
-    ]
+        { label: 'Pune', value: 'pune' },
+    ];
+
+
+    // const selectOptions = [
+    //     { label: 'Mumbai', value: 'mumbai' },
+    //     { label: 'Pune', value: 'pune' }
+    // ]
 
 
     return (

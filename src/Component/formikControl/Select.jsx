@@ -33,17 +33,24 @@
 // export default Select
 
 
-import { ErrorMessage } from 'formik';
+// import { ErrorMessage } from 'formik';
 import React from 'react';
 import Select from 'react-select'; // Import from react-select
 import TextError from '../TextError/TextError'
-// import 'react-select/dist/react-select.css';
+import { Field, ErrorMessage, useFormikContext } from 'formik';
 
+console.log('TextError', TextError)
 
 const CustomSelect = (props) => {
     const { name, label, options, ...rest } = props;
 
-    console.log('options', options)
+    // console.log('options', options)
+    const formik = useFormikContext();
+
+    const handleSelectChange = (selectedOption) => {
+      formik.setFieldTouched(name, true); 
+      formik.setFieldValue(name, selectedOption);
+    };
 
     return (
         <div className='input-control'>
@@ -53,7 +60,10 @@ const CustomSelect = (props) => {
                 name={name}
                 className='field'
                 options={options}
+                onChange={handleSelectChange}
+                value={formik.values[name]} 
                 {...rest}
+                isMulti={true} // Enable multi-select
                 isSearchable={true}
             />
             <ErrorMessage name={name} component={TextError} />
@@ -61,4 +71,4 @@ const CustomSelect = (props) => {
     );
 };
 
-export default CustomSelect; // Renamed the component to avoid conflicts with react-select
+export default CustomSelect;
