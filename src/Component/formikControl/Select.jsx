@@ -13,11 +13,18 @@ const Select = (props) => {
                 className='field'
                 {...rest}
             >
+                <option value=''>
+                    Please select
+                </option>
                 {
-                    options.map((option,index)=><option key={index} value={option.value}>{option.value}</option>)
+                    options.map((option, index) =>
+                        <option key={index} value={option.value}>
+                            {option.value}
+                        </option>
+                    )
                 }
             </Field>
-            <ErrorMessage name={name} component={TextError}/>
+            <ErrorMessage name={name} component={TextError} />
         </div>
     )
 }

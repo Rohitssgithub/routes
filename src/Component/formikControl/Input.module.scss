@@ -1,8 +1,12 @@
 .inputControl{
-    height: 70px;
+    height: 80px;
+    padding: 0 5px;
 
 .inputField{
     width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
 }
 }
 .errorMsg{
@@ -20,4 +24,10 @@
 }
 .passwordField{
     width: 100%;
+}
+
+.chekboxs{
+    border: solid;
+    width: 50%;
+
 }

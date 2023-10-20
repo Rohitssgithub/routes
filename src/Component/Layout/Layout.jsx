@@ -11,7 +11,6 @@ import Topbar from '../Topbar/Topbar';
 const Layout = () => {
 
     // const { loginUser, loading } = useSelector((state) => state.login)
-
     // console.log('loginUser', loginUser)
     return (
         <>

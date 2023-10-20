@@ -15,7 +15,7 @@ const RadioButtons = (props) => {
                         ({ field }) => {
                             return options.map((option) => {
                                 return (
-                                    <span key={option.key} className='form-radio'>
+                                    <span key={option.key} className=''>
                                         <input
                                             {...field}
                                             type='radio'

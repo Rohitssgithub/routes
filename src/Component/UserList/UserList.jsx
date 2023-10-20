@@ -17,10 +17,12 @@ import Loading from '../Loading/Loading';
 import UserDeleteModal from '../Modal/UserDeleteModal';
 import SingleUserModal from '../Modal/SingleUserModal/SingleUserModal';
 import { searchUser } from '../../Redux/Slice/UserSlice';
-import { debounce } from 'lodash'; // You need to install the lodash library
 
 import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
+
+import Select from 'react-select';
+
 
 const UserList = () => {
     let dispatch = useDispatch()
@@ -76,6 +78,11 @@ const UserList = () => {
         {
             name: 'Email',
             selector: row => row.email,
+            sortable: true,
+        },
+        {
+            name: 'Select',
+            // selector: row => row,
             sortable: true,
         },
         {

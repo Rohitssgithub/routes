@@ -9,7 +9,6 @@ import Input from './Input'
 
 const FormikControl = (props) => {
     const { control, ...rest } = props
-    console.log('control', control)
     switch (control) {
         case 'input': return <Input {...rest} />
 

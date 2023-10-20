@@ -10,9 +10,12 @@ const Input = (props) => {
     const { label, name, type, icon, ...rest } = props;
     return (
         <div className={styles.inputControl}>
-            <label htmlFor={name}>{icon}</label>
-            <Field name={name} {...rest}>
-                {
+            <label htmlFor={name}>{label}</label>
+            <Field name={name} {...rest}
+                className={styles.inputField}
+
+            >
+                {/* {
                     ({ field }) => {
                         return (
                             <TextField
@@ -21,11 +24,10 @@ const Input = (props) => {
                                 label={label}
                                 variant="standard"
                                 className={styles.inputField}
-                                required
                             />
                         )
                     }
-                }
+                } */}
             </Field>
             <ErrorMessage name={name} component={TextError} />
         </div>

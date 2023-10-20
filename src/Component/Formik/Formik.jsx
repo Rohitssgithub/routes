@@ -1,0 +1,137 @@
+import React, { useState } from 'react';
+import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
+import * as Yup from 'yup';
+import FormikControl from '../formikControl/FormikControl';
+import styles from "../sideBarNavigation/SidebarNavigation.module.scss"
+
+const Formiks = () => {
+
+    const SignupSchema = Yup.object().shape({
+        name: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Name is Required'),
+        email: Yup.string().email('Invalid email').required('Email is Required'),
+        phone: Yup.string()
+            .matches(/^\d{10}$/, 'Phone number must be exactly 10 digits')
+            .required('Phone number is Required'),
+        gender: Yup.string().required('this field is required'),
+        langauage: Yup.array()
+            .required('This field is required'),
+        city: Yup.string().required('This field is required'),
+        date: Yup.date().required('this is required')
+    })
+
+    const initialValues = {
+        name: '',
+        email: '',
+        phone: '',
+        gender: '',
+        langauage: '',
+        city: '',
+        date: null
+    }
+    const radioOptions = [
+        { key: 'male', value: 'male' },
+        { key: 'female', value: 'female' }
+    ]
+
+    const checkboxOptions = [
+        { key: 'English', value: 'english' },
+        { key: 'Hindi', value: 'hindi' }
+    ]
+
+    const selectOptions = [
+        { key: 'Mumbai', value: 'mumbai' },
+        { key: 'Pune', value: 'pune' }
+    ]
+
+
+    return (
+        <>
+            <div className={styles.formDiv}>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={SignupSchema}
+                    onSubmit={values => {
+                        console.log('values', values)
+                    }}
+                    validateOnBlur
+                    validateOnChange
+                >
+                    {formik => {
+                        return (
+                            <Form className='row'>
+                                {/* <div className='d-flex'> */}
+                                <div className='col-4'>
+                                    <FormikControl
+                                        control='input'
+                                        type='text'
+                                        label='Enter Your Username'
+                                        placeholder='Enter Your Username'
+                                        name='name'
+                                    />
+                                </div>
+                                <div className='col-4'>
+                                    <FormikControl
+                                        control='input'
+                                        type='email'
+                                        label='Enter Your email'
+                                        placeholder='Enter Your email'
+                                        name='email'
+                                    />
+                                </div>
+                                <div className='col-4'>
+                                    <FormikControl
+                                        control='input'
+                                        type='number'
+                                        label='Enter Your Phone'
+                                        placeholder='Enter Your Phone'
+                                        name='phone'
+                                    />
+                                </div>
+
+                                <div className='col-4'>
+                                    <FormikControl
+                                        control='radio'
+                                        label=' gender'
+                                        name='gender'
+                                        options={radioOptions}
+                                    />
+                                </div>
+
+                                <div className='col-4'>
+                                    <FormikControl
+                                        control='checkbox'
+                                        label='checkbox'
+                                        name='langauage'
+                                        options={checkboxOptions}
+                                    />
+                                </div>
+                                <div className='col-4'>
+                                    <FormikControl
+                                        control='select'
+                                        label='checkbox'
+                                        name='city'
+                                        options={selectOptions}
+                                    />
+                                </div>
+
+                                <FormikControl
+                                    control='date'
+                                    label='Date'
+                                    name='date'
+                                />
+                                <div className='col-12 text-center'>
+                                    <button type='submit' className='btn btn-primary'>Register</button>
+                                </div>
+                            </Form>
+                        )
+                    }}
+                </Formik>
+            </div>
+        </>
+    )
+}
+
+export default Formiks
