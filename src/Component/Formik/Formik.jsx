@@ -46,6 +46,7 @@ const Formiks = () => {
         langauage: '',
         city: '',
         imageFile: null,
+        password: '',
         date: null
     }
     const radioOptions = [
@@ -147,8 +148,15 @@ const Formiks = () => {
                                         options={selectOptions}
                                     />
                                 </div>
-
-
+                                <div className='col-4'>
+                                    <FormikControl
+                                        control='input'
+                                        type='text'
+                                        label='Password'
+                                        placeholder='Password'
+                                        name='password'
+                                    />
+                                </div>
 
                                 <FormikControl
                                     control='date'
