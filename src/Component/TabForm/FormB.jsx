@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import FormikControl from '../formikControl/FormikControl';
 import styles from "../sideBarNavigation/SidebarNavigation.module.scss"
 
-const Formiks = () => {
+const FormB = () => {
 
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
@@ -15,19 +15,6 @@ const Formiks = () => {
         phone: Yup.string()
             .matches(/^\d{10}$/, 'Phone number must be exactly 10 digits')
             .required('Phone number is Required'),
-        gender: Yup.string().required('this field is required'),
-        langauage: Yup.array()
-            .required('This field is required'),
-        city: Yup.array()
-            .min(1, 'Select at least one language') // Require at least one selection
-            .of(
-                Yup.object().shape({
-                    label: Yup.string(),
-                    value: Yup.string(),
-                })
-            )
-            .required('This field is required'),
-        date: Yup.date().required('this is required'),
         imageFile: Yup.string()
             .test('is-pdf', 'Only PDF documents are allowed', (value) => {
                 if (!value) {
@@ -42,28 +29,9 @@ const Formiks = () => {
         name: '',
         email: '',
         phone: '',
-        gender: '',
-        langauage: '',
-        city: '',
         imageFile: null,
-        password: '',
-        date: null
+
     }
-    const radioOptions = [
-        { key: 'male', value: 'male' },
-        { key: 'female', value: 'female' }
-    ]
-
-    const checkboxOptions = [
-        { key: 'English', value: 'english' },
-        { key: 'Hindi', value: 'hindi' }
-    ]
-    const selectOptions = [
-        { label: 'Mumbai', value: 'mumbai' },
-        { label: 'Pune', value: 'pune' },
-    ];
-
-
     return (
         <>
             <div className={styles.formDiv}>
@@ -79,7 +47,6 @@ const Formiks = () => {
                     {formik => {
                         return (
                             <Form className='row'>
-                                {/* <div className='d-flex'> */}
                                 <div className='col-4'>
                                     <FormikControl
                                         control='input'
@@ -117,48 +84,8 @@ const Formiks = () => {
                                         name='imageFile'
                                     />
                                 </div>
-                                <div className='col-4'>
-                                    <FormikControl
-                                        control='radio'
-                                        label=' gender'
-                                        name='gender'
-                                        options={radioOptions}
-                                    />
-                                </div>
-
-                                <div className='col-4'>
-                                    <FormikControl
-                                        control='checkbox'
-                                        label='checkbox'
-                                        name='langauage'
-                                        options={checkboxOptions}
-                                    />
-                                </div>
-                                <div className='col-4'>
-                                    <FormikControl
-                                        control='select'
-                                        label='checkbox'
-                                        name='city'
-                                        options={selectOptions}
-                                    />
-                                </div>
-                                <div className='col-4'>
-                                    <FormikControl
-                                        control='input'
-                                        type='text'
-                                        label='Password'
-                                        placeholder='Password'
-                                        name='password'
-                                    />
-                                </div>
-
-                                <FormikControl
-                                    control='date'
-                                    label='Date'
-                                    name='date'
-                                />
                                 <div className='col-12 text-center'>
-                                    <button type='submit' className='btn btn-primary'>Register</button>
+                                    {/* <button type='submit' className='btn btn-primary'>Register</button> */}
                                 </div>
                             </Form>
                         )
@@ -169,4 +96,4 @@ const Formiks = () => {
     )
 }
 
-export default Formiks
+export default FormB

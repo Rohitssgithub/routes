@@ -17,10 +17,12 @@ import Loading from '../Loading/Loading';
 import UserDeleteModal from '../Modal/UserDeleteModal';
 import SingleUserModal from '../Modal/SingleUserModal/SingleUserModal';
 import { searchUser } from '../../Redux/Slice/UserSlice';
-
+// import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import Select from 'react-select';
 
 
@@ -126,40 +128,49 @@ const UserList = () => {
         dispatch(fetchAllUsers())
     }, [])
     return (
+
         <>
-            {
-                singleUserModal && <SingleUserModal singleUser={singleUser} setSingleUser={setSingleUser} setSingleUserModal={setSingleUserModal} singleUserModal={singleUserModal} />
-            }
-            {
-                modalOpen && <EditUserModal modalOpen={modalOpen} setModalOpen={setModalOpen} seletedData={seletedData} />
-            }
+            <SkeletonTheme baseColor='grey'>
 
-            {
-                deleteModalOpen && <UserDeleteModal deleteModalOpen={deleteModalOpen} setDeleteModalOpen={setDeleteModalOpen} setDeleteId={setDeleteId} deleteId={deleteId} />
-            }
+                {
+                    singleUserModal && <SingleUserModal singleUser={singleUser} setSingleUser={setSingleUser} setSingleUserModal={setSingleUserModal} singleUserModal={singleUserModal} />
+                }
+                {
+                    modalOpen && <EditUserModal modalOpen={modalOpen} setModalOpen={setModalOpen} seletedData={seletedData} />
+                }
 
-            <div className={styles.topDiv}>
-                <div class="mb-3">
-                    <input type="search" onChange={(e) => handleChange(e)} class="form-control" id="exampleFormControlInput1" placeholder="Search" />
+                {
+                    deleteModalOpen && <UserDeleteModal deleteModalOpen={deleteModalOpen} setDeleteModalOpen={setDeleteModalOpen} setDeleteId={setDeleteId} deleteId={deleteId} />
+                }
+
+                <div className={styles.topDiv}>
+                    <div class="mb-3">
+                        <input type="search" onChange={(e) => handleChange(e)} class="form-control" id="exampleFormControlInput1" placeholder="Search" />
+                    </div>
+                    <Button label="Add User" className='btn btn-danger my-3 ' onClick={handleAddFunction} />
                 </div>
-                <Button label="Add User" className='btn btn-danger my-3 ' onClick={handleAddFunction} />
-            </div>
-            <Table
-                columns={columns}
-                data={filterUser.length == 0 ? allusers : filterUser}
-                className={styles.candidatesTable}
-                paginationProps={{
-                    isPagination: true,
-                    tableName: "Report",
-                    currentPage: 1,
-                    totalCount: count,
-                    rowsPerPageValue: rowsPerPageValue,
-                    setRowsPerPageValue: setRowsPerPageValue,
-                    setPageSelected: setPageSelected,
-                }}
+                {
+                    loading ? <Skeleton height={250} />
+                        :
+                        <Table
+                            columns={columns}
+                            data={filterUser.length == 0 ? allusers : filterUser}
+                            className={styles.candidatesTable}
+                            paginationProps={{
+                                isPagination: true,
+                                tableName: "Report",
+                                currentPage: 1,
+                                totalCount: count,
+                                rowsPerPageValue: rowsPerPageValue,
+                                setRowsPerPageValue: setRowsPerPageValue,
+                                setPageSelected: setPageSelected,
+                            }}
+                        />
 
-            />
-            {loading && <Loading />}
+                }
+            </SkeletonTheme>
+
+            {/* {loading && <Skeleton />} */}
 
 
 

@@ -4,9 +4,10 @@ import AdminList from "../Component/Admin/AdminList"
 import Admin from '../Component/Admin/Admin'
 import Home from "../Pages/Home/Home"
 import Formiks from "../Component/Formik/Formik"
+import TabForm from "../Component/TabForm/TabForm"
 export const PORTALS_NAMES = {
     // 'HOME':"home",
-    "ADMIN": "admin",   
+    "ADMIN": "admin",
     "USER": "user",
 }
 
@@ -62,6 +63,14 @@ export const PATH = {
                 path: PORTALS[PORTALS_NAMES["USER"]] + "/FORM",
                 element: <Formiks />,
                 pageName: "Formik",
+                sidebar: {
+                    show: true
+                },
+            },
+            TAB_FORM: {
+                path: PORTALS[PORTALS_NAMES["USER"]] + "/tab-form",
+                element: <TabForm />,
+                pageName: "Tab form",
                 sidebar: {
                     show: true
                 },

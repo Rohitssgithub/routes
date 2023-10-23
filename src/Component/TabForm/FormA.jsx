@@ -3,8 +3,9 @@ import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import FormikControl from '../formikControl/FormikControl';
 import styles from "../sideBarNavigation/SidebarNavigation.module.scss"
+import Submit from './Submit';
 
-const Formiks = () => {
+const FormA = ({handleSubmit}) => {
 
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
@@ -71,7 +72,8 @@ const Formiks = () => {
                     initialValues={initialValues}
                     validationSchema={SignupSchema}
                     onSubmit={values => {
-                        console.log('values', values)
+                        handleSubmit(values)
+                        // console.log('values', values)
                     }}
                     validateOnBlur
                     validateOnChange
@@ -158,7 +160,9 @@ const Formiks = () => {
                                     name='date'
                                 />
                                 <div className='col-12 text-center'>
-                                    <button type='submit' className='btn btn-primary'>Register</button>
+                                    {/* <Submit /> */}
+                                    {/* <button type='submit' className='btn btn-primary'>Save</button>
+                                    <button type='' className='btn btn-primary'>Next</button> */}
                                 </div>
                             </Form>
                         )
@@ -169,4 +173,4 @@ const Formiks = () => {
     )
 }
 
-export default Formiks
+export default FormA
