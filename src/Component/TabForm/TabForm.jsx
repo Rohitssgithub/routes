@@ -28,7 +28,7 @@ function TabForm() {
         console.log('called')
         if (activeTab === maxTabCount - 1) {
             return (
-                <button  className='btn btn-primary' onClick={() => handleSubmit(tableData[activeTab])}>
+                <button className='btn btn-primary' onClick={() => handleSubmit(tableData[activeTab])}>
                     Submit
                 </button>
             );
@@ -40,6 +40,10 @@ function TabForm() {
             );
         }
     };
+
+    const handleTabs = () => {
+        handleTabClick(activeTab + 1)
+    }
 
 
     const [tableData, setTableData] = useState([
@@ -207,7 +211,7 @@ function TabForm() {
                 >
                     {/* <Table columns={columns} data={tableData} /> */}
                     {/* <FormA handleSubmits={handleSub}/> */}
-                    <FormA renderNextButton={renderNextButton}/>
+                    <FormA handleTabClick={handleTabs} />
 
 
                 </div>

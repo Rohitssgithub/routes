@@ -5,7 +5,7 @@ import FormikControl from '../formikControl/FormikControl';
 import styles from "../sideBarNavigation/SidebarNavigation.module.scss"
 import Submit from './Submit';
 
-const FormA = ({ renderNextButton }) => {
+const FormA = ({ handleTabClick }) => {
 
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
@@ -83,7 +83,7 @@ const FormA = ({ renderNextButton }) => {
                     validateOnChange
                 >
                     {formik => {
-                        console.log(formik.isValid)
+                        // console.log(formik.isValid)
                         return (
                             <Form className='row'>
                                 {/* <div className='d-flex'> */}
@@ -166,10 +166,14 @@ const FormA = ({ renderNextButton }) => {
                                 />
                                 <div className='col-12 text-center'>
                                     <button type='submit' className='btn btn-primary'>Save</button>
-                                    {/* {renderNextButton()} */}
-                                    {formik.isValid && renderNextButton()}
-
-                                    {/* <button type='button' className='btn btn-primary'>Next</button> */}
+                                    <button
+                                        // type='button'
+                                        className='btn btn-primary'
+                                        onClick={handleTabClick}
+                                        disabled={!formik.isValid}
+                                    >
+                                        Next
+                                    </button>
                                 </div>
                             </Form>
                         )
