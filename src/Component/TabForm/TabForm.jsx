@@ -3,6 +3,7 @@ import Table from '../Table/Table';
 import './ReactTabs.css';
 import FormA from './FormA';
 import FormB from './FormB';
+import NextBtn from './NextBtn';
 
 function TabForm() {
     const [activeTab, setActiveTab] = useState(0);
@@ -24,16 +25,16 @@ function TabForm() {
     };
 
     const renderNextButton = () => {
-        console.log('activeTab', activeTab)
+        console.log('called')
         if (activeTab === maxTabCount - 1) {
             return (
-                <button className='btn btn-primary' onClick={() => handleSubmit(tableData[activeTab])}>
+                <button  className='btn btn-primary' onClick={() => handleSubmit(tableData[activeTab])}>
                     Submit
                 </button>
             );
         } else {
             return (
-                <button className='btn btn-primary' onClick={() => handleTabClick(activeTab + 1)}>
+                <button type='button' className='btn btn-primary' onClick={() => handleTabClick(activeTab + 1)}>
                     Next
                 </button>
             );
@@ -177,9 +178,10 @@ function TabForm() {
     // };
 
 
-    const handleSubmit = () => {
-
-    }
+    // const handleSubmitFormA = (values, { setSubmitting }) => {
+    //     console.log('Form A submitted with values:', values);
+    //     setSubmitting(false); // Set isSubmitting to false to allow form submission
+    // };
 
 
     return (
@@ -204,7 +206,9 @@ function TabForm() {
                     className={`tab-pane ${activeTab === 0 ? "active" : ""}`}
                 >
                     {/* <Table columns={columns} data={tableData} /> */}
-                    <FormA handleSubmit={handleSubmit} />
+                    {/* <FormA handleSubmits={handleSub}/> */}
+                    <FormA renderNextButton={renderNextButton}/>
+
 
                 </div>
                 <div
@@ -215,10 +219,8 @@ function TabForm() {
 
             </div>
             {/* <button onClick={() => handleTabClick(activeTab + 1)}>Next</button> */}
-            <button type='submit' className='btn btn-danger'>Save</button>
-            {renderNextButton()}
-
-
+            {/* <button type='submit' className='btn btn-danger'>Save</button> */}
+            {/* {renderNextButton()} */}
 
         </div>
     );

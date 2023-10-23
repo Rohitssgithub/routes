@@ -5,7 +5,7 @@ import FormikControl from '../formikControl/FormikControl';
 import styles from "../sideBarNavigation/SidebarNavigation.module.scss"
 import Submit from './Submit';
 
-const FormA = ({handleSubmit}) => {
+const FormA = ({ renderNextButton }) => {
 
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
@@ -65,6 +65,11 @@ const FormA = ({handleSubmit}) => {
     ];
 
 
+    // const handleSubmits=(val)=>{
+    //     console.log(val)
+    // }
+
+
     return (
         <>
             <div className={styles.formDiv}>
@@ -72,13 +77,13 @@ const FormA = ({handleSubmit}) => {
                     initialValues={initialValues}
                     validationSchema={SignupSchema}
                     onSubmit={values => {
-                        handleSubmit(values)
-                        // console.log('values', values)
+                        console.log('values', values)
                     }}
                     validateOnBlur
                     validateOnChange
                 >
                     {formik => {
+                        console.log(formik.isValid)
                         return (
                             <Form className='row'>
                                 {/* <div className='d-flex'> */}
@@ -160,9 +165,11 @@ const FormA = ({handleSubmit}) => {
                                     name='date'
                                 />
                                 <div className='col-12 text-center'>
-                                    {/* <Submit /> */}
-                                    {/* <button type='submit' className='btn btn-primary'>Save</button>
-                                    <button type='' className='btn btn-primary'>Next</button> */}
+                                    <button type='submit' className='btn btn-primary'>Save</button>
+                                    {/* {renderNextButton()} */}
+                                    {formik.isValid && renderNextButton()}
+
+                                    {/* <button type='button' className='btn btn-primary'>Next</button> */}
                                 </div>
                             </Form>
                         )

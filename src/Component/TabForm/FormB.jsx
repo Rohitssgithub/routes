@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import FormikControl from '../formikControl/FormikControl';
 import styles from "../sideBarNavigation/SidebarNavigation.module.scss"
+import Submit from './Submit';
 
 const FormB = () => {
 
@@ -85,7 +86,7 @@ const FormB = () => {
                                     />
                                 </div>
                                 <div className='col-12 text-center'>
-                                    {/* <button type='submit' className='btn btn-primary'>Register</button> */}
+                                    <button className='btn btn-primary'>Submit</button>
                                 </div>
                             </Form>
                         )
