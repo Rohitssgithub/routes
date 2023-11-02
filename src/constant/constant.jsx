@@ -4,16 +4,17 @@ import AdminList from "../Component/Admin/AdminList"
 import Admin from '../Component/Admin/Admin'
 import Home from "../Pages/Home/Home"
 import Formiks from "../Component/Formik/Formik"
-import TabForm from "../Component/TabForm/TabForm"
+import TabForm from "../Component/TabForm/TabForm";
+import UserHome from "../Component/userHome/UserHome"
 export const PORTALS_NAMES = {
-    // 'HOME':"home",
+    'HOME': "home",
     "ADMIN": "admin",
     "USER": "user",
 }
 
 // portals paths
 export const PORTALS = {
-    // [PORTALS_NAMES["HOME"]]: "/",
+    [PORTALS_NAMES["HOME"]]: "/user-home",
     [PORTALS_NAMES["USER"]]: "/user",
     [PORTALS_NAMES["ADMIN"]]: "/admin",
 }
@@ -29,15 +30,17 @@ export const PATH = {
         pageName: "Login",
     },
 
-    // [PORTALS_NAMES["HOME"]]: {
-    //     path: PORTALS[PORTALS_NAMES["HOME"]],
-    //     private: true,
-    //     // pageName: "user list",
-    //     element: <Home />,
-    //     sidebar: {
-    //         show: true
-    //     }
-    // },
+    [PORTALS_NAMES["HOME"]]: {
+        path: PORTALS[PORTALS_NAMES["HOME"]],
+        private: true,
+        pageName: "user Home",
+        element: <UserHome />,
+        sidebar: {
+            show: true
+        },
+        children: {
+        }
+    },
     [PORTALS_NAMES["USER"]]: {
         path: PORTALS[PORTALS_NAMES["USER"]],
         private: true,

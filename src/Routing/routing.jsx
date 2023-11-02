@@ -32,10 +32,10 @@ export const router = createBrowserRouter([
                         path: child.path,
                         element: child.element
                     }),
-                        {
-                            path: portal.path,
-                            element: <Navigate to={Object.values(portal.children)[0].path} />
-                        }
+                        // {
+                        //     path: portal.path,
+                        //     element: <Navigate to={Object.values(portal.children)[0].path} />
+                        // }
                     )]
             })),
             {

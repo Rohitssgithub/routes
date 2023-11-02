@@ -59,7 +59,7 @@ export const updateUser = createAsyncThunk(
             return data.data
         } catch (err) {
             console.log(err)
-        toast.error('error while updating user')
+            toast.error('error while updating user')
         }
     }
 )

@@ -2,9 +2,8 @@ import React, { useMemo, useState } from 'react'
 import styles from './SidebarNavigation.module.scss';
 import { Navigations } from '../../Component/sideBarNavigation/Navigations'
 import { useLocation, NavLink } from 'react-router-dom';
-import { PORTALS } from '../../constant/constant';
+import { PATH, PORTALS } from '../../constant/constant';
 import { combineClasses } from '../../utils';
-import rightIcon from "../../assets/chevron-right.svg"
 
 
 const SidebarNavigation = () => {
@@ -18,9 +17,6 @@ const SidebarNavigation = () => {
         }, {})
     }, [])
     const [sidebarItemsOpen, setSidebarItemsOpen] = useState(sidebarObj);
-
-
-
 
     return (
         <>
@@ -36,16 +32,35 @@ const SidebarNavigation = () => {
                         <p style={styles.portalName}>Home</p>
                     </NavLink> */}
                     {Object.entries(PORTALS).length && Object.entries(PORTALS).map(([key, value]) => {
+                        console.log(value)
                         return (
                             <div key={key} className={styles.linksDiv}>
-                                <NavLink
+                                {
+                                    Object.keys(PATH[key].children).length !== 0 ?
+                                        <NavLink
+                                            to={location.pathname}
+                                            className={({ isActive }) =>
+                                                combineClasses(styles.portalNavLink, isActive ? styles.portalLinkactive : "")}
+                                            onClick={() => setSidebarItemsOpen({ ...sidebarItemsOpen, [key]: !sidebarItemsOpen?.[key] })}
+                                        >
+                                            <p style={styles.portalName}>{key}</p>
+                                        </NavLink>
+                                        :
+                                        <NavLink
+                                            to={value}
+                                            className={({ isActive }) =>
+                                                combineClasses(styles.portalNavLink, isActive ? styles.portalLinkactive : "")}
+                                        >
+                                            <p style={styles.portalName}>{key}</p>
+                                        </NavLink>
+                                }
+                                {/* <NavLink
                                     to={location.pathname}
                                     className={({ isActive }) =>
                                         combineClasses(styles.portalNavLink, isActive ? styles.portalLinkactive : "")}
                                     onClick={() => setSidebarItemsOpen({ ...sidebarItemsOpen, [key]: !sidebarItemsOpen?.[key] })}
                                 >
                                     <p style={styles.portalName}>{key}</p>
-                                    {/* <img src={rightIcon} alt="expand menu" className={`${styles.iconArrowImage} ${styles.iconArrowImage} ${sidebarItemsOpen?.[key] && styles.animatIcon}`} /> */}
                                 </NavLink>
                                 {sidebarItemsOpen?.[key] && Navigations?.[key].map((data) => (
                                     <>
@@ -60,7 +75,7 @@ const SidebarNavigation = () => {
                                         </NavLink>
 
                                     </>
-                                ))}
+                                ))} */}
                             </div>
                         )
                     })}
