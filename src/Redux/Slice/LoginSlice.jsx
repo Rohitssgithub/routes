@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiUrl = import.meta.env.VITE_REACT_API_URL;
-
-
 export const userLogin = createAsyncThunk("userLogin", async (data, { rejectWithValue }) => {
     const response = await axios.post("https://dummyjson.com/auth/login", {
         username: data.username,
