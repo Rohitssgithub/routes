@@ -30,7 +30,7 @@ const TopBar = (props) => {
             <div className={styles.topbarDiv}>
                 <p>{pageName}</p>
                 <div>
-                    <span>{userData.email}</span>
+                    {/* <span>{userData.email}</span> */}
                     <NavLink
                         className='btn btn-primary'
                         onClick={() => localStorage.clear()} to="/login"

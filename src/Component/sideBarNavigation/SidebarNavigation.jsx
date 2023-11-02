@@ -61,7 +61,7 @@ const SidebarNavigation = () => {
                                     onClick={() => setSidebarItemsOpen({ ...sidebarItemsOpen, [key]: !sidebarItemsOpen?.[key] })}
                                 >
                                     <p style={styles.portalName}>{key}</p>
-                                </NavLink>
+                                </NavLink>*/}
                                 {sidebarItemsOpen?.[key] && Navigations?.[key].map((data) => (
                                     <>
                                         <NavLink
@@ -75,7 +75,7 @@ const SidebarNavigation = () => {
                                         </NavLink>
 
                                     </>
-                                ))} */}
+                                ))}
                             </div>
                         )
                     })}

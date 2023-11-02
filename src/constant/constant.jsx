@@ -36,7 +36,7 @@ export const PATH = {
         pageName: "user Home",
         element: <UserHome />,
         sidebar: {
-            show: true
+            // show: true
         },
         children: {
         }

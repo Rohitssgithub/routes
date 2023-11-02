@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
     {
         //private routes
         path: "/",
-        element: <PrivateRoute component={Layout} />,
+        element: < Layout />,
         children: [
             ...Object.values(PATH).filter(x => x.private)?.map(portal => ({
                 path: portal.path,
