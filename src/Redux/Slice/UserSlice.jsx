@@ -26,9 +26,7 @@ export const fetchSingleUser = createAsyncThunk(
             console.log("data", data)
             return data.data
         } catch (err) {
-            // console.log(err)
             return rejectWithValue(err);
-
         }
     }
 )
@@ -39,7 +37,8 @@ export const addUser = createAsyncThunk("addUser", async (formData, { rejectWith
         console.log('response', response)
         toast.success('User Added Successfully')
         return response.data;
-    } catch (error) {
+    }
+    catch (error) {
         console.log('error', error)
         toast.error('error while creating user')
         return rejectWithValue(error);
@@ -94,68 +93,68 @@ const userReducer = createSlice({
             })
         },
     },
-
-    extraReducers: {
-        [fetchAllUsers.pending]: (state) => {
-            state.loading = true;
-        },
-        [fetchAllUsers.fulfilled]: (state, action) => {
-            state.loading = false;
-            state.allusers = action.payload;
-        },
-        [fetchAllUsers.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-        },
-        [addUser.pending]: (state) => {
-            state.loading = true;
-        },
-        [addUser.fulfilled]: (state, action) => {
-            state.loading = false;
-            state.allusers.push(action.payload);
-        },
-        [addUser.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-        },
-        [updateUser.pending]: (state) => {
-            state.loading = true;
-        },
-        [updateUser.fulfilled]: (state, action) => {
-            console.log(action.payload);
-            state.loading = false;
-            state.allusers = state.allusers.map((ele) =>
-                ele.id === action.payload.id ? action.payload : ele
-            );
-        },
-        [updateUser.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-        },
-        [deleteUser.pending]: (state) => {
-            state.loading = true;
-        },
-        [deleteUser.fulfilled]: (state, action) => {
-            console.log(action.payload)
-            state.loading = false;
-            state.allusers = state.allusers.filter((ele) => ele.id !== action.payload.id);
-        },
-        [deleteUser.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-        },
-        [fetchSingleUser.pending]: (state) => {
-            state.loading = true;
-        },
-        [fetchSingleUser.fulfilled]: (state, action) => {
-            state.loading = false;
-            state.singleUsers = action.payload
-        },
-        [fetchSingleUser.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.payload.message;
-        },
+    extraReducers: (builder) => {
+        builder.addCase(fetchAllUsers.pending, (state) => {
+            state.loading == true
+        })
+            .addCase(fetchAllUsers.fulfilled, (state, action) => {
+                state.loading = false;
+                state.allusers = action.payload;
+            })
+            .addCase(fetchAllUsers.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(addUser.pending, (state) => {
+                state.loading == true
+            })
+            .addCase(addUser.fulfilled, (state, action) => {
+                state.loading = false;
+                state.allusers.push(action.payload);
+            })
+            .addCase(addUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateUser.pending, (state) => {
+                state.loading == true
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                console.log(action.payload);
+                state.loading = false;
+                state.allusers = state.allusers.map((ele) =>
+                    ele.id === action.payload.id ? action.payload : ele
+                );
+            })
+            .addCase(updateUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(deleteUser.pending, (state) => {
+                state.loading == true
+            })
+            .addCase(deleteUser.fulfilled, (state, action) => {
+                console.log(action.payload)
+                state.loading = false;
+                state.allusers = state.allusers.filter((ele) => ele.id !== action.payload.id);
+            })
+            .addCase(deleteUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(fetchSingleUser.pending, (state) => {
+                state.loading == true
+            })
+            .addCase(fetchSingleUser.fulfilled, (state, action) => {
+                state.loading = false;
+                state.singleUsers = action.payload
+            })
+            .addCase(fetchSingleUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload.message;
+            })
     }
+
 })
 
 export default userReducer.reducer;

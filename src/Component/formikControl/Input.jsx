@@ -16,7 +16,7 @@ const Input = (props) => {
             <Field name={name} type={type} {...rest}
                 className={styles.inputField}
             >
-                {/* {
+                {
                     ({ field }) => {
                         return (
                             <TextField
@@ -28,7 +28,7 @@ const Input = (props) => {
                             />
                         )
                     }
-                } */}
+                }
             </Field>
             <ErrorMessage name={name} component={TextError} />
         </div>

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import BasicModal from './Modal';
 import Button from '../Button/Button';
-import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
+import { Formik, Form, } from 'formik';
 import * as Yup from 'yup';
 import { addUser } from '../../Redux/Slice/UserSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateUser } from '../../Redux/Slice/UserSlice';
 import FormikControl from '../formikControl/FormikControl';
 import styles from '../../Component/Modal/Modal.module.scss'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
