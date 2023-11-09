@@ -24,7 +24,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Select from 'react-select';
+import 'intro.js/introjs.css';
+import 'intro.js/intro.js';
+import introJs from 'intro.js';
 
+import { Steps, Hints } from 'intro.js-react';
+import 'intro.js/introjs.css';
 
 const UserList = () => {
     let dispatch = useDispatch()
@@ -40,9 +45,33 @@ const UserList = () => {
     const [singleUserModal, setSingleUserModal] = useState(false);
     const [singleUser, setSingleUser] = useState(false);
 
+    // console.log('allUsers', allusers)
 
+    const startIntro = () => {
+        console.log('start')
+        console.log(typeof introJs)
+        if (typeof introJs !== 'undefined') {
+            const intro = introJs();
+            console.log('intro', intro)
+            intro.setOptions({
+                steps: [
+                    {
+                        element: document.querySelector('.form-control'),
+                        intro: 'This is the search input field.',
+                    },
+                    {
+                        element: document.querySelector('.btn.btn-danger'),
+                        intro: 'Click this button to add a user.',
+                    },
+                ],
+            });
+            intro.start();
+        }
+    };
 
-    console.log('allUsers', allusers)
+    useEffect(() => {
+        startIntro()
+    }, [])
 
 
     const handleUpdate = (data) => {
@@ -130,6 +159,7 @@ const UserList = () => {
     return (
 
         <>
+
             <SkeletonTheme baseColor='grey'>
 
                 {
