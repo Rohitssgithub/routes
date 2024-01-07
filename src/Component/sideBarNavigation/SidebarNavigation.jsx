@@ -6,6 +6,8 @@ import { PATH, PORTALS } from '../../constant/constant';
 import { combineClasses } from '../../utils';
 
 
+console.log('Navigations', Navigations)
+
 const SidebarNavigation = () => {
 
     const location = useLocation();

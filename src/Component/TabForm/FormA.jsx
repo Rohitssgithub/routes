@@ -62,13 +62,7 @@ const FormA = ({ handleTabClick }) => {
     const selectOptions = [
         { label: 'Mumbai', value: 'mumbai' },
         { label: 'Pune', value: 'pune' },
-    ];
-
-
-    // const handleSubmits=(val)=>{
-    //     console.log(val)
-    // }
-
+    ]
 
     return (
         <>

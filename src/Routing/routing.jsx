@@ -16,10 +16,10 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <PublicRoute component={Login} />
     },
-    // {   
-    //     path: "/",
-    //     element: <Home />
-    // },
+    {   
+        path: "/",
+        element: <Home />
+    },
     {
         //private routes
         path: "/",

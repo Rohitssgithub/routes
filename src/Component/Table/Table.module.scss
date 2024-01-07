@@ -1,8 +1,43 @@
+.checkBoxStyle{
+  border: solid !important;
+  position: relative !important;
+  
+}
+
+.chekdiv{
+  border: solid ;
+  // position: absolute;
+  top: 0;
+  left: 0;
+}
+.cheDivmian{
+border: solid red;
+height: 48px;
+&:first-child{
+  // height: 52px;  
+  // margin-top: 52px;
+}
+}
+.mainDivCheckbox{
+  margin-top: 52px;
+  border: solid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: scroll !important;
+  z-index: 999 !important;
+  // height: 500px !important;
+  // display: flex !important;
+  flex-wrap: nowrap;
+  max-height: 400px;
+  // max-height: calc(100vh - 140px) !important;
+  flex-direction: column !important;
+}
 .table {
-  // overflow-x: scroll;
-  // border: solid yellow;
+  border: solid red !important;
   max-height: calc(100vh - 140px);
   overflow-x: auto !important;
+  // overflow: hidden !important;
 
 
   &::-webkit-scrollbar {
@@ -26,7 +61,9 @@
     }
 
     .rdt_TableRow {
+      position: relative;
       font-size: 11px;
+      border: solid red;
     }
 
     .rdt_TableHead {

@@ -47,31 +47,31 @@ const UserList = () => {
 
     // console.log('allUsers', allusers)
 
-    const startIntro = () => {
-        console.log('start')
-        console.log(typeof introJs)
-        if (typeof introJs !== 'undefined') {
-            const intro = introJs();
-            console.log('intro', intro)
-            intro.setOptions({
-                steps: [
-                    {
-                        element: document.querySelector('.form-control'),
-                        intro: 'This is the search input field.',
-                    },
-                    {
-                        element: document.querySelector('.btn.btn-danger'),
-                        intro: 'Click this button to add a user.',
-                    },
-                ],
-            });
-            intro.start();
-        }
-    };
+    // const startIntro = () => {
+    //     console.log('start')
+    //     console.log(typeof introJs)
+    //     if (typeof introJs !== 'undefined') {
+    //         const intro = introJs();
+    //         console.log('intro', intro)
+    //         intro.setOptions({
+    //             steps: [
+    //                 {
+    //                     element: document.querySelector('.form-control'),
+    //                     intro: 'This is the search input field.',
+    //                 },
+    //                 {
+    //                     element: document.querySelector('.btn.btn-danger'),
+    //                     intro: 'Click this button to add a user.',
+    //                 },
+    //             ],
+    //         });
+    //         intro.start();
+    //     }
+    // };
 
-    useEffect(() => {
-        startIntro()
-    }, [])
+    // useEffect(() => {
+    //     startIntro()
+    // }, [])
 
 
     const handleUpdate = (data) => {
@@ -93,19 +93,31 @@ const UserList = () => {
     };
 
     const columns = [
-        {
-            name: 'Name',
-            selector: (row) => (
-                <span
-                    className="user-name-link"
-                    onClick={() => handleNameClick(row)}
-                    style={{ cursor: 'pointer' }}
-                >
-                    {row.name}
-                </span>
-            ),
-            sortable: true,
-        },
+        // {
+        //     name: (
+        //         <div className={styles.checkboxContainer}>
+        //             <input
+        //                 type="checkbox"
+        //                 className={styles.checkbox}
+        //             />
+        //         </div>
+        //     ),
+        //     selector: (row) => (
+        //         <div className={styles.checkboxContainer}>
+        //             <input
+        //                 type="checkbox"
+        //                 className={styles.checkbox}
+        //             />
+        //         </div>
+        //     ),
+        //     style: {
+        //         position: "sticky",
+        //         left: 0,
+        //         zIndex: 1,
+        //     },
+        //     width: '60px',
+        //     fixed: 'left',
+        // },
         {
             name: 'Email',
             selector: row => row.email,
@@ -137,13 +149,68 @@ const UserList = () => {
                 )
             },
         },
+        {
+            name: "Action",
+            cell: (row) => {
+                return (
+                    <>
+                        <Button label={<i className="fa-solid fa-pen-to-square"></i>} className='btn border mx-2' onClick={() => handleUpdate(row)} />
+                        <Button label={<i className="fa-solid fa-trash"></i>} className='btn border' onClick={() => handleDelete(row)} />
+                    </>
+                )
+            },
+        },
+        {
+            name: "Action",
+            cell: (row) => {
+                return (
+                    <>
+                        <Button label={<i className="fa-solid fa-pen-to-square"></i>} className='btn border mx-2' onClick={() => handleUpdate(row)} />
+                        <Button label={<i className="fa-solid fa-trash"></i>} className='btn border' onClick={() => handleDelete(row)} />
+                    </>
+                )
+            },
+        },
+
+        {
+            name: "Action",
+            cell: (row) => {
+                return (
+                    <>
+                        <Button label={<i className="fa-solid fa-pen-to-square"></i>} className='btn border mx-2' onClick={() => handleUpdate(row)} />
+                        <Button label={<i className="fa-solid fa-trash"></i>} className='btn border' onClick={() => handleDelete(row)} />
+                    </>
+                )
+            },
+        },
+        {
+            name: "Action",
+            cell: (row) => {
+                return (
+                    <>
+                        <Button label={<i className="fa-solid fa-pen-to-square"></i>} className='btn border mx-2' onClick={() => handleUpdate(row)} />
+                        <Button label={<i className="fa-solid fa-trash"></i>} className='btn border' onClick={() => handleDelete(row)} />
+                    </>
+                )
+            },
+        },
+        {
+            name: "Action",
+            cell: (row) => {
+                return (
+                    <>
+                        <Button label={<i className="fa-solid fa-pen-to-square"></i>} className='btn border mx-2' onClick={() => handleUpdate(row)} />
+                        <Button label={<i className="fa-solid fa-trash"></i>} className='btn border' onClick={() => handleDelete(row)} />
+                    </>
+                )
+            },
+        },
     ];
 
 
 
     const handleChange = (e) => {
         const searchValue = e.target.value;
-        console.log('Input value:', searchValue);
         let timer = setTimeout(() => {
             dispatch(searchUser(searchValue))
         }, 1000);

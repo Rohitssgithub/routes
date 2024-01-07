@@ -134,7 +134,6 @@ const userReducer = createSlice({
                 state.loading == true
             })
             .addCase(deleteUser.fulfilled, (state, action) => {
-                console.log(action.payload)
                 state.loading = false;
                 state.allusers = state.allusers.filter((ele) => ele.id !== action.payload.id);
             })

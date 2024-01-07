@@ -44,7 +44,6 @@ console.log('TextError', TextError)
 const CustomSelect = (props) => {
     const { name, label, options, ...rest } = props;
 
-    // console.log('options', options)
     const formik = useFormikContext();
 
     const handleSelectChange = (selectedOption) => {
