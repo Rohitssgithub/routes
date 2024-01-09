@@ -10,7 +10,7 @@ import Layout from '../Component/Layout/Layout';
 import UserList from '../Component/UserList/UserList';
 import { PATH, PORTALS_NAMES } from '../constant/constant';
 
-// console.log('PATH', PATH)
+console.log('PATH', PATH)
 export const router = createBrowserRouter([
     {
         path: "/login",
